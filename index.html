@@ -22,7 +22,8 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 .kb.bl{--fg:#eee;background:#383838;border-color:#222;color:#eee}.kb.bl:active{background:#4a4a4a}
 .kb svg{height:28px;width:auto;max-width:100%}.sl{stroke:var(--fg);stroke-width:.8}.sn{fill:var(--fg)}.sa{fill:var(--fg);font:bold 15px serif}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
-</style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
+.cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
+</style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="cu1" style="flex:0 0 auto;padding:3px 9px">▲</button><button id="cu2" style="flex:0 0 auto;padding:3px 9px">▼</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
 <div id="pad"><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
 <div id="sv" hidden><div class="row" style="margin-bottom:8px"><b style="flex:1">💾 კომპოზიციები</b><button id="sx" style="flex:0 0 auto;padding:4px 12px">✕</button></div>
@@ -37,7 +38,7 @@ const G={1:['ロ','D'],2:['ロ','M'],3:['ロ',''],5:['ツ','M'],6:['ツ','C'],7:
 const B={ロ:'M6 9L33 7L31 33L8 32Z',ツ:'M6 10L12 18M14 9H31Q36 12 33 24Q28 34 16 38',レ:'M11 6L12 30Q26 30 36 18',チ:'M12 7L30 9M5 18H35M21 9Q23 28 12 37',リ:'M12 8V22M27 6V26Q25 34 15 38',ヒ:'M12 6V30Q14 34 34 32M12 18H30',ウ:'M20 3V9M9 14V22M9 14H29Q35 16 32 26Q27 35 15 38',ハ:'M17 8L6 34M24 10Q35 16 33 30','＞':'M8 6L32 20L10 32','?':'M10 12Q20 2 30 12Q30 20 20 24V28M20 34V36'};
 const NM=['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B'],NK=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'],SH=['','C♯','','D♯','','','F♯','','G♯','','A♯',''];
 const DU=[['½',1],['1',2],['1½',3],['2',4],['3',6],['4',8]];
-let seq=[],dur=2,mode='s',di=1,lay=[],EW=0,EH=0;
+let seq=[],cur=0,dur=2,mode='s',di=1,lay=[],EW=0,EH=0;
 const me=(x,y)=>`<path d="M0 0L8 12M8 0L1 13" transform="translate(${x},${y})" class="mk"/>`;
 const Y0=(m,reg)=>(m.includes('K')||reg)?2:14,GH=(m,reg)=>(66-Y0(m,reg))*.55;
 function gl(b,m,reg){let s='';
@@ -54,16 +55,18 @@ function staff(p){const o=+p.slice(-1),L=p[0],ac=p[1]==='b',ix=o*7+'CDEFGAB'.ind
  if(ix>8)for(let e=10;e<=ix;e+=2)q+=`<line x1="19" x2="33" y1="${bt-e*hs}" y2="${bt-e*hs}" class="sl"/>`;
  q+=`<ellipse cx="26" cy="${y}" rx="5" ry="3.6" class="sn"/>`+(ac?`<text x="10" y="${y+5}" class="sa">♭</text>`:'');
  const y0=Math.min(y-9,bt-8*hs-4),y1=Math.max(bt+4,y+9);return `<svg viewBox="0 ${y0} 50 ${y1-y0}">${q}</svg>`}
-function render(){let t=0,reg=null,prev=null;const cols=[[]];
- seq.forEach((e,i)=>{if(e.br){cols.push([]);return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1});return}
+function render(){let t=0,reg=null,prev=null;const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;
+ const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
+ seq.forEach((e,i)=>{if(e.br){cols.push([]);if(cur===i+1)mk0();return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1,i});if(cur===i+1)mk0();return}
   const side=t%2===0?'R':'L',nd=Math.ceil(e.d/2),rep=prev&&prev.p===e.p;
   const [b,m]=G[N[e.p]]||['?',''];const kan=pv(e.p)>60;const R=kan?'甲':'乙';let mk='';
   if(!rep){if(reg===null||R!==reg){const auto=prev&&G[N[prev.p]]&&G[N[prev.p]][0]==='リ'&&kan&&(b==='ロ'||b==='ツ');if(!auto)mk=R;reg=R}}
   const line=e.d===1&&((seq[i-1]&&seq[i-1].d===1)||(seq[i+1]&&seq[i+1].d===1));
-  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line});t+=e.d;prev=e});
- lay=cols;
+  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,i});t+=e.d;prev=e;if(cur===i+1)mk0()});
+ lay=cols.map(c=>c.filter(x=>!x.cu));
  const dots=n=>'<div class="dt"></div>'.repeat(n);
- document.getElementById('out').innerHTML=cols.map(c=>`<div class="col">${c.map(it=>it.hn?'<div class="bh"></div>':`<div class="r">${it.line?'<div class="ln"></div>':''}<div class="s">${it.side==='L'?dots(it.nd):''}</div>${gl(it.b,it.m,it.mk)}<div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`).join('')}</div>`).join('');
+ document.getElementById('out').innerHTML=cols.map(c=>`<div class="col">${c.map(it=>it.cu?'<div class="cu"></div>':it.hn?`<div class="bh" data-i="${it.i}"></div>`:`<div class="r" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}<div class="s">${it.side==='L'?dots(it.nd):''}</div>${gl(it.b,it.m,it.mk)}<div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`).join('')}</div>`).join('');
+ const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=seq.length?`სულ ${t/2} თვლა`:'';LS.set('shk.cur',seq)}
 function exportSvg(){const cw=64,pd=18;const W=lay.length*cw+pd*2;let H=0,out='';
  lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd;col.forEach(it=>{
@@ -87,14 +90,16 @@ function kb(){const f=(i,o,st,cl)=>{const n=NM[i],p=NK[i]+o,ok=!!N[p];let c;
  let h='';for(let o=4;o<=7;o++)h+=`<div class="oc"><div class="g b14">${BL.map((i,j)=>f(i,o,`style="grid-column:${BC[j]}/span 2"`,'bl')).join('')}</div><div class="g w7">${WH.map(i=>f(i,o)).join('')}</div></div>`;
  document.getElementById('pk').innerHTML=h;document.getElementById('md').textContent={s:'𝄞',l:'ABC',j:'字'}[mode]}
 const drl=()=>{document.getElementById('dr').innerHTML=DU[di][0]+'<small>თვლა</small>'};
-document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const l=seq[seq.length-1];
- if(b.dataset.p){seq.push({p:b.dataset.p,d:dur});render()}
+document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const l=seq[cur-1];
+ if(b.dataset.p){seq.splice(cur,0,{p:b.dataset.p,d:dur});cur++;render()}
  else if(b.id==='md'){mode=mode==='s'?'l':mode==='l'?'j':'s';kb()}
  else if(b.id==='dr'){di=(di+1)%DU.length;dur=DU[di][1];drl()}
- else if(b.id==='sp'){if(l&&!l.br&&!l.hn){seq.push({hn:1});render()}}
- else if(b.id==='en'){if(l&&!l.br){seq.push({br:1});render()}}
- else if(b.id==='un'){seq.pop();render()}};
-document.getElementById('cl').onclick=()=>{setBak();seq=[];render()};
+ else if(b.id==='sp'){if(l&&!l.br&&!l.hn){seq.splice(cur,0,{hn:1});cur++;render()}}
+ else if(b.id==='en'){if(l&&!l.br){seq.splice(cur,0,{br:1});cur++;render()}}
+ else if(b.id==='un'){if(cur>0){seq.splice(cur-1,1);cur--;render()}}};
+document.getElementById('cl').onclick=()=>{setBak();seq=[];cur=0;render()};
+document.getElementById('out').onclick=e=>{const r=e.target.closest('[data-i]');if(r){const i=+r.dataset.i,bb=r.getBoundingClientRect();cur=(e.clientY-bb.top<bb.height/2)?i:i+1}else cur=seq.length;render()};
+document.getElementById('cu1').onclick=()=>{cur=Math.max(0,cur-1);render()};document.getElementById('cu2').onclick=()=>{cur=Math.min(seq.length,cur+1);render()};
 document.getElementById('ep').onclick=()=>exp('png');
 
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
@@ -105,7 +110,7 @@ function sv(m){$('svm').textContent=m||''}
 function list(){const l=LS.get('shk.lib')||{},box=$('sl');box.innerHTML='';const ks=Object.keys(l).sort((a,b)=>l[b].t-l[a].t);
  if(!ks.length){box.innerHTML='<div class="m">შენახული კომპოზიციები ჯერ არ არის</div>';return}
  ks.forEach(k=>{const r=document.createElement('div');r.className='li';const sp=document.createElement('span');sp.textContent=k+' · '+new Date(l[k].t).toLocaleDateString();
-  const o=document.createElement('button');o.textContent='გახსნა';o.onclick=()=>{setBak();seq=clean(l[k].seq);$('sn').value=k;render();$('sv').hidden=true};
+  const o=document.createElement('button');o.textContent='გახსნა';o.onclick=()=>{setBak();seq=clean(l[k].seq);cur=seq.length;$('sn').value=k;render();$('sv').hidden=true};
   const x=document.createElement('button');x.textContent=delArm===k?'წაშლა?':'✕';x.onclick=()=>{if(delArm===k){delete l[k];LS.set('shk.lib',l);delArm=null}else delArm=k;list()};
   r.append(sp,o,x);box.append(r)})}
 async function saveFile(fn,data){const dl=(typeof claude!=='undefined'&&claude.use)?await claude.use('downloads'):null;
@@ -113,12 +118,12 @@ async function saveFile(fn,data){const dl=(typeof claude!=='undefined'&&claude.u
 $('sb').onclick=()=>{list();sv('');$('sv').hidden=false};$('sx').onclick=()=>{$('sv').hidden=true;delArm=null};
 $('ss').onclick=()=>{if(!seq.length){sv('ჯერ ჩაწერე ნოტები');return}const l=LS.get('shk.lib')||{};let n=$('sn').value.trim()||('კომპოზიცია '+(Object.keys(l).length+1));l[n]={t:Date.now(),seq:clean(seq)};
  sv(LS.set('shk.lib',l)?'შენახულია: '+n:'შენახვა ვერ მოხერხდა (ბრაუზერის მეხსიერება დაბლოკილია)');$('sn').value=n;list()};
-$('snw').onclick=()=>{setBak();seq=[];$('sn').value='';render();sv('ახალი ჩანაწერი. წინა ინახება: „დაბრუნება"')};
-$('sbk').onclick=()=>{const b=LS.get('shk.bak');if(!b||!b.length){sv('დასაბრუნებელი არაფერია');return}const cur=seq;seq=clean(b);LS.set('shk.bak',cur);render();$('sv').hidden=true};
+$('snw').onclick=()=>{setBak();seq=[];cur=0;$('sn').value='';render();sv('ახალი ჩანაწერი. წინა ინახება: „დაბრუნება"')};
+$('sbk').onclick=()=>{const b=LS.get('shk.bak');if(!b||!b.length){sv('დასაბრუნებელი არაფერია');return}const cs=seq;seq=clean(b);cur=seq.length;LS.set('shk.bak',cs);render();$('sv').hidden=true};
 $('sje').onclick=async()=>{if(!seq.length){sv('ჯერ ჩაწერე ნოტები');return}try{await saveFile('shakuhachi-composition.json',new Blob([JSON.stringify({v:1,name:$('sn').value,seq:clean(seq)})],{type:'application/json'}));sv('ფაილი შენახულია')}catch(e){sv(e&&e.code==='declined'?'':'JSON ვერ შეინახა: '+((e&&(e.code||e.message))||e))}};
 $('sji').onclick=()=>$('sf').click();
-$('sf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result),q=clean(o.seq);if(!q.length)throw 0;setBak();seq=q;if(o.name)$('sn').value=o.name;render();$('sv').hidden=true}catch(x){sv('ფაილი ვერ წავიკითხე')}};r.readAsText(f);e.target.value=''};
-{const c=LS.get('shk.cur');if(Array.isArray(c))seq=clean(c)}
+$('sf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result),q=clean(o.seq);if(!q.length)throw 0;setBak();seq=q;cur=seq.length;if(o.name)$('sn').value=o.name;render();$('sv').hidden=true}catch(x){sv('ფაილი ვერ წავიკითხე')}};r.readAsText(f);e.target.value=''};
+{const c=LS.get('shk.cur');if(Array.isArray(c)){seq=clean(c);cur=seq.length}}
 kb();drl();render();
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script></body></html>
