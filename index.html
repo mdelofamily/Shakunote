@@ -16,14 +16,14 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 .gl{fill:none;stroke:var(--fg);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.mk{fill:none;stroke:var(--fg);stroke-width:2.4;stroke-linecap:round}.tx{fill:var(--fg);font:13px "Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif}
 .bh{height:12px;width:36px;position:relative}.bh::after{content:"";position:absolute;left:0;top:5px;width:12px;border-top:1.5px solid var(--fg)}
 #pad{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--ln);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
-#pad .row button{min-height:36px;font-size:13px}
+#pad .row button{height:44px;min-height:44px;padding:0 2px;font-size:13px;overflow:hidden}
 #pk{display:flex;gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;padding:1px 0}#pk .oc{flex:0 0 calc(7*34px);scroll-snap-align:start}
 .kb{--fg:#222;--ink:#222;background:#d8d2c4;border-color:#b5af9f;color:#222;font-size:11px;min-height:38px;padding:3px 0}.kb:active{background:#c9c2b1}
 .kb.bl{--fg:#eee;background:#383838;border-color:#222;color:#eee}.kb.bl:active{background:#4a4a4a}
 .kb svg{height:28px;width:auto;max-width:100%}.sl{stroke:var(--fg);stroke-width:.8}.sn{fill:var(--fg)}.sa{fill:var(--fg);font:bold 15px serif}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
-</style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="cu1" style="flex:0 0 auto;padding:3px 9px">▲</button><button id="cu2" style="flex:0 0 auto;padding:3px 9px">▼</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
+</style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
 <div id="pad"><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
 <div id="sv" hidden><div class="row" style="margin-bottom:8px"><b style="flex:1">💾 კომპოზიციები</b><button id="sx" style="flex:0 0 auto;padding:4px 12px">✕</button></div>
@@ -99,7 +99,7 @@ document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if
  else if(b.id==='un'){if(cur>0){seq.splice(cur-1,1);cur--;render()}}};
 document.getElementById('cl').onclick=()=>{setBak();seq=[];cur=0;render()};
 document.getElementById('out').onclick=e=>{const r=e.target.closest('[data-i]');if(r){const i=+r.dataset.i,bb=r.getBoundingClientRect();cur=(e.clientY-bb.top<bb.height/2)?i:i+1}else cur=seq.length;render()};
-document.getElementById('cu1').onclick=()=>{cur=Math.max(0,cur-1);render()};document.getElementById('cu2').onclick=()=>{cur=Math.min(seq.length,cur+1);render()};
+
 document.getElementById('ep').onclick=()=>exp('png');
 
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
