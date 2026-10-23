@@ -9,12 +9,12 @@ h1{font-size:15px;margin:0 0 6px}.m{color:var(--mu);font-size:11px}
 .g{display:grid;gap:3px;margin:3px 0}.w7{grid-template-columns:repeat(7,1fr)}.b14{grid-template-columns:repeat(14,1fr)}
 button{background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:6px 2px;font:inherit}
 button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
-#out{display:flex;flex-direction:row-reverse;gap:10px;margin-top:8px;border-top:1px solid var(--ln);padding:8px 0 230px;overflow-x:auto;min-height:90px}
+#out{display:flex;flex-direction:row-reverse;gap:9px;margin-top:8px;border-top:1px solid var(--ln);padding:8px 0 230px;overflow-x:auto;min-height:90px}
 .col{display:flex;flex-direction:column;align-items:center;min-width:50px}
-.r{position:relative;display:flex;align-items:center;margin:1px 0}.r .s{width:14px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.r{position:relative;display:flex;align-items:center;margin:1px 0}.r .s{width:11px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .r .ln{position:absolute;left:50%;top:0;bottom:0;border-left:1.2px solid var(--fg)}.dt{width:5px;height:5px;border-radius:50%;background:var(--fg)}
 .gl{fill:none;stroke:var(--fg);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.mk{fill:none;stroke:var(--fg);stroke-width:2.4;stroke-linecap:round}.tx{fill:var(--fg);font:13px "Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif}
-.bh{height:12px;width:36px;position:relative}.bh::after{content:"";position:absolute;left:0;top:5px;width:12px;border-top:1.5px solid var(--fg)}
+.bh{height:12px;width:30px;position:relative}.bh::after{content:"";position:absolute;left:0;top:5px;width:12px;border-top:1.5px solid var(--fg)}
 #pad{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--ln);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
 #pad .row button{height:44px;min-height:44px;padding:0 2px;font-size:13px;overflow:hidden}
 #pk{display:flex;gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;padding:1px 0}#pk .oc{flex:0 0 calc(7*34px);scroll-snap-align:start}
@@ -24,10 +24,10 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.gp{background:rgba(128,128,128,.28);border-radius:8px;padding:2px 3px;margin:3px 0}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel{outline:2px solid #e0533d;outline-offset:-1px;border-radius:4px}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+.gp{border-radius:8px;padding:2px 3px;margin:4px 0}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel{outline:2px solid #e0533d;outline-offset:-1px;border-radius:4px}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
 </style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
-<div id="pad"><div id="selp" class="row" hidden><button id="gx" style="flex:0 0 52px">✕</button><button id="gm" style="flex:0 0 52px">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl" style="flex:0 0 52px">+</button><button id="sx2" style="flex:0 0 52px">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
+<div id="pad"><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
 <div id="sv" hidden><div class="row" style="margin-bottom:8px"><b style="flex:1">💾 კომპოზიციები</b><button id="sx" style="flex:0 0 auto;padding:4px 12px">✕</button></div>
 <div class="m" style="margin-bottom:6px">მიმდინარე ჩანაწერი ავტომატურად ინახება ამ ბრაუზერში. სახელით შესანახად:</div>
 <div class="row"><input type="text" id="sn" placeholder="სახელი"><button id="ss" style="flex:0 0 auto;padding:7px 12px">შენახვა</button></div>
@@ -52,7 +52,7 @@ function gl(b,m,reg){let s='';
  if(reg)s+=`<text x="48" y="14" class="tx">${reg}</text>`;
  if(b==='＞')return `<svg width="35" height="12" viewBox="0 32 64 22"><g transform="translate(18,24) translate(20,19) scale(.6) translate(-20,-19)" class="gl" style="stroke-width:7.5"><path d="${B[b]}"/></g></svg>`;
  const y0=Y0(m,reg);return `<svg width="35" height="${GH(m,reg)}" viewBox="0 ${y0} 64 ${66-y0}">${b==='＞'?`<g transform="translate(18,24) translate(20,19) scale(.6) translate(-20,-19)" class="gl" style="stroke-width:7.5"><path d="${B[b]}"/></g>`:`<g transform="translate(18,24)" class="gl"><path d="${B[b]}"/></g>`}${s}</svg>`}
-const ins=it=>{const a=seq[cur-1],b=seq[cur];if(a&&b&&a.g&&a.g===b.g)it.g=a.g;seq.splice(cur,0,it);cur++;sel=null};
+const ins=it=>{const a=seq[cur-1],b=seq[cur];if(a&&b){const com=(a.g||[]).filter(x=>(b.g||[]).includes(x));if(com.length)it.g=com}seq.splice(cur,0,it);cur++;sel=null};
 const pv=p=>{const o=+p.slice(-1),k=NK.indexOf(p.slice(0,-1));return o*12+k};
 const SHR=new Set((()=>{const m={};for(const p in N){const g=G[N[p]];if(!g)continue;const k=g[0]+'|'+g[1];(m[k]=m[k]||new Set()).add(pv(p)>60?'甲':'乙')}return Object.keys(m).filter(k=>m[k].size>1)})());
 function staff(p){const o=+p.slice(-1),L=p[0],ac=p[1]==='b',ix=o*7+'CDEFGAB'.indexOf(L)-30,hs=3,bt=60,y=bt-ix*hs;let q='';for(let k=0;k<5;k++)q+=`<line x1="4" x2="46" y1="${bt-k*2*hs}" y2="${bt-k*2*hs}" class="sl"/>`;
@@ -61,35 +61,38 @@ function staff(p){const o=+p.slice(-1),L=p[0],ac=p[1]==='b',ix=o*7+'CDEFGAB'.ind
  q+=`<ellipse cx="26" cy="${y}" rx="5" ry="3.6" class="sn"/>`+(ac?`<text x="10" y="${y+5}" class="sa">♭</text>`:'');
  const y0=Math.min(y-9,bt-8*hs-4),y1=Math.max(bt+4,y+9);return `<svg viewBox="0 ${y0} 50 ${y1-y0}">${q}</svg>`}
 function render(){if(sel&&(!seq[sel.a]||sel.b>=seq.length))sel=null;
- const gcnt=[];seq.forEach((e,i)=>{gcnt[i]=e.g?((i>0&&seq[i-1].g===e.g)?gcnt[i-1]:(e.gc||2)):0});const glast=i=>!!seq[i].g&&!(seq[i+1]&&seq[i+1].g===seq[i].g);let t=0,prev=null,sepB=false,st=null,pb=null,stc=null;const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;
+ const GN={},GL={},GF={};seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]=i})});for(const id in GF)GN[id]=(seq[GF[id]].gc&&seq[GF[id]].gc[id])||2;
+ let t=0,prev=null,sepB=false,st=null,pb=null,stc=null;const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;
  const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
- seq.forEach((e,i)=>{if(e.br){cols.push([]);if(cur===i+1)mk0();return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1,i,g:e.g||0,gl:glast(i),gn:gcnt[i]});sepB=true;if(cur===i+1)mk0();return}
+ seq.forEach((e,i)=>{if(e.br){cols.push([]);if(cur===i+1)mk0();return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1,i,gs:e.g||[]});sepB=true;if(cur===i+1)mk0();return}
   const side=t%2===0?'R':'L',nd=Math.ceil(e.d/2);
   const cand=prev&&prev.p===e.p,rep=cand&&(sepB?!!e.sw:!e.sw);
   const [b,m]=G[N[e.p]]||['?',''];const rg2=pv(e.p)>60?'甲':'乙';let mk='';
   if(!rep){const imp=(pb==='リ'&&(b==='ロ'||b==='ツ'))?'甲':((pb==='ロ'||pb==='ツ')&&st==='甲'&&b==='リ')?'乙':st;
    if((SHR.has(b+'|'+m)&&imp!==rg2)||e.fm)mk=rg2;st=rg2;pb=b}
   const line=e.d===1&&((seq[i-1]&&seq[i-1].d===1)||(seq[i+1]&&seq[i+1].d===1));
-  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,i,g:e.g||0,gl:glast(i),gn:gcnt[i]});t+=e.d;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
+  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,i,gs:e.g||[]});t+=e.d;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
  lay=cols.map(c=>c.filter(x=>!x.cu));
  const dots=n=>'<div class="dt"></div>'.repeat(n);
- const colHtml=c=>{let h='',og=0,lg=false,ln=0;const cl=()=>{if(og){h+=(lg?`<div class="gn">×${ln}</div>`:'')+'</div>';og=0}};
- c.forEach(it=>{if(it.cu){h+='<div class="cu"></div>';return}const g=it.g||0;if(g!==og){cl();if(g){h+='<div class="gp">';og=g}}if(g){lg=it.gl;ln=it.gn}
-  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}<div class="s">${it.side==='L'?dots(it.nd):''}</div>${gl(it.b,it.m,it.mk)}<div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`});cl();return `<div class="col">${h}</div>`};
+ const colHtml=c=>{let h='',st=[],lastI=-1;const closeTo=n=>{while(st.length>n){const id=st.pop();h+=(GL[id]===lastI?`<div class="gn">×${GN[id]}</div>`:'')+'</div>'}};
+ c.forEach(it=>{if(it.cu){h+='<div class="cu"></div>';return}const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k]===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push(gs[j]);h+=`<div class="gp d${Math.min(j+1,4)}">`}
+  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}<div class="s">${it.side==='L'?dots(it.nd):''}</div>${gl(it.b,it.m,it.mk)}<div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
  document.getElementById('out').innerHTML=cols.map(colHtml).join('');
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
- const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=rngG();document.getElementById('gv').textContent=g?'×'+(seq[runStart(sel.a)].gc||2):'×'}}}
-function exportSvg(){const cw=64,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',bg='';
- lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd+tH,og=0,gY=0,lg=false,ln=0;const clG=()=>{if(og){const ex=lg?16:0;bg+=`<rect x="${cx-30}" y="${gY-2}" width="60" height="${y-gY+4+ex}" rx="8" fill="#e2e2e2"/>`;if(lg)bg+=`<text x="${cx}" y="${y+11}" text-anchor="middle" font-size="12" font-family="system-ui,sans-serif" fill="#000">×${ln}</text>`;y+=ex;og=0}};
-  col.forEach(it=>{const g=it.g||0;if(g!==og){clG();if(g){og=g;gY=y}}if(g){lg=it.gl;ln=it.gn}
-  
-  if(it.hn){out+=`<line x1="${cx-23}" x2="${cx-8}" y1="${y+6}" y2="${y+6}" class="ex"/>`;y+=12;return}
+ const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=exactG();document.getElementById('gv').textContent=g?'×'+GN[g]:'×';document.getElementById('pst').disabled=!(clip&&clip.length)}}}
+function exportSvg(){const cw=58,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
+ seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{GLx[id]=i})});for(const id in GLx){let f=seq.findIndex(e=>(e.g||[]).includes(+id));GNx[id]=(seq[f].gc&&seq[f].gc[id])||2}
+ lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd+tH,st=[],lastI=-1;
+  const closeTo=n=>{while(st.length>n){const s0=st.pop(),ex=GLx[s0.id]===lastI?16:0;y+=ex;R.push({d:s0.d,x:cx-27+3*s0.d,w:54-6*s0.d,y0:s0.y,y1:y+3,lab:ex?GNx[s0.id]:0,cx});y+=3}};
+  col.forEach(it=>{const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k].id===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push({id:gs[j],d:j,y});y+=3}
+  if(it.hn){out+=`<line x1="${cx-15}" x2="${cx-3}" y1="${y+6}" y2="${y+6}" class="ex"/>`;y+=12;lastI=it.i;return}
   const h=it.b==='＞'?12:GH(it.m,it.mk),rh=h+4;
   if(it.line)out+=`<line x1="${cx}" x2="${cx}" y1="${y}" y2="${y+rh}" class="ex" style="stroke-width:1.2"/>`;
   out+=gl(it.b,it.m,it.mk).replace('<svg ',`<svg x="${cx-17.5}" y="${y+2}" `);
-  for(let j=0;j<it.nd;j++){out+=`<circle cx="${it.side==='R'?cx+26:cx-26}" cy="${y+rh/2+(j-(it.nd-1)/2)*8}" r="2.6" fill="#000"/>`}
-  y+=rh});clG();H=Math.max(H,y)});
+  for(let j=0;j<it.nd;j++){out+=`<circle cx="${it.side==='R'?cx+23:cx-23}" cy="${y+rh/2+(j-(it.nd-1)/2)*8}" r="2.6" fill="#000"/>`}
+  y+=rh;lastI=it.i});closeTo(0);H=Math.max(H,y)});
+ const cols_=['#e8e8e8','#d6d6d6','#c4c4c4','#b2b2b2'];R.sort((a,b)=>a.d-b.d);let bg='';R.forEach(r=>{bg+=`<rect x="${r.x}" y="${r.y0}" width="${r.w}" height="${r.y1-r.y0}" rx="8" fill="${cols_[Math.min(r.d,3)]}"/>`;if(r.lab)bg+=`<text x="${r.cx}" y="${r.y1-8}" text-anchor="middle" font-size="12" font-family="system-ui,sans-serif" fill="#000">×${r.lab}</text>`});
  EW=W;EH=H+pd;return `<svg xmlns="http://www.w3.org/2000/svg" width="${EW}" height="${EH}" viewBox="0 0 ${EW} ${EH}"><style>.gl{fill:none;stroke:#000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.mk{fill:none;stroke:#000;stroke-width:2.4;stroke-linecap:round}.tx{fill:#000;font:13px "Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif}.ex{stroke:#000;stroke-width:1.5}</style><rect width="100%" height="100%" fill="#fff"/>${cname?`<text x="${W/2}" y="${pd+12}" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#000">${cname.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</text>`:''}${bg}${out}</svg>`}
 const SC=3;function toCanvas(){return new Promise((res,rej)=>{const svg=exportSvg(),img=new Image(),u=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
  img.onload=()=>{const c=document.createElement('canvas');c.width=EW*SC;c.height=EH*SC;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c)};img.onerror=rej;img.src=u})}
@@ -112,9 +115,12 @@ document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if
  else if(b.id==='dr'){di=(di+1)%DU.length;dur=DU[di][1];drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p)seq[k].d=dur;render()}}
  else if(b.id==='sp'){if(l&&!l.br&&!l.hn){ins({hn:1});render()}}
  else if(b.id==='en'){if(l&&!l.br){ins({br:1});render()}}
- else if(b.id==='un'){if(cur>0){const d=seq[cur-1];if(d.gc&&seq[cur]&&seq[cur].g===d.g)seq[cur].gc=d.gc;seq.splice(cur-1,1);cur--;sel=null;render()}}
+ else if(b.id==='un'){if(cur>0){delRange(cur-1,cur-1);cur--;sel=null;render()}}
  else if(b.id==='sx2'){sel=null;render()}
  else if(b.id==='gm'){setCnt(-1)}
+ else if(b.id==='cpy'){copySel();render()}
+ else if(b.id==='cut'){cutSel()}
+ else if(b.id==='pst'){pasteSel()}
  else if(b.id==='gpl'){setCnt(1)}
  else if(b.id==='gx'){unG()}};
 document.getElementById('cl').onclick=()=>{setBak();seq=[];cur=0;cname='';render()};
@@ -123,7 +129,7 @@ document.getElementById('out').onclick=e=>{if(lpO){lpO=false;return}const r=e.ta
 document.getElementById('ep').onclick=()=>exp('png');
 
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
-const cp=(o,e)=>{if(e.g){o.g=e.g;if(e.gc)o.gc=e.gc}return o};
+const cp=(o,e)=>{if(e.g!=null){const g=Array.isArray(e.g)?e.g.slice():[e.g];if(g.length)o.g=g}if(e.gc!=null){const gc=typeof e.gc==='object'?{...e.gc}:(e.g!=null&&!Array.isArray(e.g)?{[e.g]:e.gc}:null);if(gc&&Object.keys(gc).length)o.gc=gc}return o};
 const clean=a=>Array.isArray(a)?a.filter(e=>e&&(e.br||e.hn||(N[e.p]&&e.d>0))).map(e=>cp(e.br?{br:1}:e.hn?{hn:1}:{p:e.p,d:e.d,...(e.sw||e.rp?{sw:1}:{}),...(e.fm?{fm:1}:{})},e)):[];
 const $=id=>document.getElementById(id);let delArm=null;
 function setBak(){if(seq.length)LS.set('shk.bak',seq)}
@@ -145,10 +151,27 @@ $('sje').onclick=async()=>{if(!seq.length){sv('ჯერ ჩაწერე ნ�
 $('sji').onclick=()=>$('sf').click();
 $('sf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result),q=clean(o.seq);if(!q.length)throw 0;setBak();seq=q;cur=seq.length;cname=o.name||'';if(o.name)$('sn').value=o.name;render();$('sv').hidden=true}catch(x){sv('ფაილი ვერ წავიკითხე')}};r.readAsText(f);e.target.value=''};
 {const c=LS.get('shk.cur');if(Array.isArray(c)){seq=clean(c);cur=seq.length;cname=LS.get('shk.name')||''}}
-const rngG=()=>{if(!sel)return 0;const g=seq[sel.a].g;if(!g)return 0;for(let k=sel.a;k<=sel.b;k++)if(seq[k].g!==g)return 0;return g};
-function runStart(k){while(k>0&&seq[k-1].g&&seq[k-1].g===seq[k].g)k--;return k}
-function setCnt(dn){if(!sel)return;if(rngG()){const s0=runStart(sel.a);seq[s0].gc=Math.max(2,(seq[s0].gc||2)+dn)}else{const id=Math.max(0,...seq.map(e=>e.g||0))+1;for(let k=sel.a;k<=sel.b;k++){seq[k].g=id;delete seq[k].gc}seq[sel.a].gc=2}render()}
-function unG(){if(!sel)return;const old=seq[sel.a].g;if(old){const cnt=seq[runStart(sel.a)].gc||2;for(let k=sel.a;k<=sel.b;k++){delete seq[k].g;delete seq[k].gc}if(seq[sel.b+1]&&seq[sel.b+1].g===old)seq[sel.b+1].gc=cnt}sel=null;render()}
+const gr=id=>{let f=-1,l=-1;seq.forEach((e,i)=>{if(e.g&&e.g.includes(id)){if(f<0)f=i;l=i}});return[f,l]};
+const exactG=()=>{if(!sel)return 0;for(const id of (seq[sel.a].g||[])){const[f,l]=gr(id);if(f===sel.a&&l===sel.b)return id}return 0};
+const innerG=()=>{if(!sel)return 0;const gb=seq[sel.b].g||[];let r=0;for(const id of (seq[sel.a].g||[]))if(gb.includes(id))r=id;return r};
+function setCnt(dn){if(!sel)return;const ex=exactG();
+ if(ex){const f=gr(ex)[0];const gc=seq[f].gc=seq[f].gc||{};gc[ex]=Math.max(2,(gc[ex]||2)+dn)}
+ else{const a=sel.a,b=sel.b,ids=new Set();for(let k=a;k<=b;k++)(seq[k].g||[]).forEach(x=>ids.add(x));
+  for(const x of ids){const[f,l]=gr(x);if(!((f>=a&&l<=b)||(f<=a&&l>=b))){document.getElementById('gv').textContent='⚠';return}}
+  const id=1+Math.max(0,...seq.flatMap(e=>e.g||[])),pos=(seq[a].g||[]).filter(x=>(seq[b].g||[]).includes(x)).length;
+  for(let k=a;k<=b;k++){const g=(seq[k].g=seq[k].g||[]);g.splice(Math.min(pos,g.length),0,id)}
+  seq[a].gc=Object.assign(seq[a].gc||{},{[id]:2})}
+ render()}
+function unG(){if(!sel)return;const t=exactG()||innerG();if(!t)return;seq.forEach(e=>{if(e.g){e.g=e.g.filter(x=>x!==t);if(!e.g.length)delete e.g}if(e.gc&&e.gc[t]!==undefined){delete e.gc[t];if(!Object.keys(e.gc).length)delete e.gc}});render()}
+function delRange(a,b){const nx=seq[b+1];if(nx)for(let k=a;k<=b;k++){const gc=seq[k].gc;if(gc)for(const id in gc)if((nx.g||[]).includes(+id)){nx.gc=Object.assign(nx.gc||{},{[id]:gc[id]})}}seq.splice(a,b-a+1)}
+let clip=LS.get('shk.clip');if(!Array.isArray(clip))clip=null;
+function copySel(){if(!sel)return;const a=sel.a,b=sel.b,keep=new Set();const ids=new Set();for(let k=a;k<=b;k++)(seq[k].g||[]).forEach(x=>ids.add(x));ids.forEach(x=>{const[f,l]=gr(x);if(f>=a&&l<=b)keep.add(x)});
+ clip=seq.slice(a,b+1).map(e=>{const o=JSON.parse(JSON.stringify(e));if(o.g){o.g=o.g.filter(x=>keep.has(x));if(!o.g.length)delete o.g}if(o.gc){for(const id in o.gc)if(!keep.has(+id))delete o.gc[id];if(!Object.keys(o.gc).length)delete o.gc}return o});LS.set('shk.clip',clip)}
+function cutSel(){if(!sel)return;copySel();const a=sel.a;delRange(a,sel.b);cur=a;sel=null;render()}
+function pasteSel(){if(!clip||!clip.length)return;const pos=sel?sel.b+1:cur;let nid=1+Math.max(0,...seq.flatMap(e=>e.g||[])),map={};
+ const A=seq[pos-1],B=seq[pos],com=(A&&B)?(A.g||[]).filter(x=>(B.g||[]).includes(x)):[];
+ const items=clip.map(e=>{const o=JSON.parse(JSON.stringify(e));(o.g||[]).forEach(x=>{if(!map[x])map[x]=nid++});if(o.g)o.g=o.g.map(x=>map[x]);if(o.gc){const n={};for(const id in o.gc)n[map[id]||id]=o.gc[id];o.gc=n}if(com.length)o.g=com.concat(o.g||[]);return o});
+ seq.splice(pos,0,...items);cur=pos+items.length;sel=null;render()}
 let lpO=false,lpOT=null;const outE=document.getElementById('out');
 outE.addEventListener('pointerdown',e=>{lpO=false;clearTimeout(lpOT);const r=e.target.closest('[data-i]');if(!r)return;lpOT=setTimeout(()=>{lpOT=null;lpO=true;const i=+r.dataset.i;sel={anc:i,a:i,b:i};render();if(navigator.vibrate)navigator.vibrate(15)},450)});
 ['pointerup','pointercancel','pointerleave'].forEach(t=>outE.addEventListener(t,()=>clearTimeout(lpOT)));
