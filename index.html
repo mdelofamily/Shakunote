@@ -24,10 +24,10 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}#selp[hidden]{display:none}#dpop[hidden]{display:none}#dpop{margin-bottom:4px}#dpop .row{margin-bottom:4px;gap:3px}#dpop button{padding:0;font-size:15px}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}#selp[hidden]{display:none}#dpop[hidden]{display:none}#dpop{margin-bottom:4px}#dpop .row{margin-bottom:4px;gap:3px}#dpop button{padding:0;font-size:15px}#dpr{overflow-x:auto;flex-wrap:nowrap}#dpr button{flex:1 0 40px}#dpop button.on{background:#e0533d;border-color:#e0533d;color:#fff;font-weight:700}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
 </style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
-<div id="pad"><div id="dpop" hidden><div class="row" id="dpr"></div><div class="row"><button id="dcm">−</button><b id="dcv" style="flex:2;text-align:center;font-size:16px"></b><button id="dcp">+</button><button id="dcx">✓</button></div></div><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
+<div id="pad"><div id="dpop" hidden><div class="row" id="dpr"></div></div><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
 <div id="sv" hidden><div class="row" style="margin-bottom:8px"><b style="flex:1">💾 კომპოზიციები</b><button id="sx" style="flex:0 0 auto;padding:4px 12px">✕</button></div>
 <div class="m" style="margin-bottom:6px">მიმდინარე ჩანაწერი ავტომატურად ინახება ამ ბრაუზერში. სახელით შესანახად:</div>
 <div class="row"><input type="text" id="sn" placeholder="სახელი"><button id="ss" style="flex:0 0 auto;padding:7px 12px">შენახვა</button></div>
@@ -110,9 +110,11 @@ function kb(){const f=(i,o,st,cl)=>{const n=NM[i],p=NK[i]+o,ok=!!N[p];let c;
  document.getElementById('pk').innerHTML=h;document.getElementById('md').textContent={s:'𝄞',l:'ABC',j:'字'}[mode]}
 const fmtC=d=>{const w=Math.floor(d/2);return d<2?'½':w+(d%2?'½':'')};
 const drl=()=>{document.getElementById('dr').innerHTML=fmtC(dur)+'<small>თვლა</small>'};
-const DP=[1,2,3,4,5,6,8,12];
-function refreshDP(){const v=document.getElementById('dcv');if(v)v.textContent=fmtC(dur)+' თვლა';document.querySelectorAll('#dpr button').forEach(x=>x.classList.toggle('on',+x.dataset.dv===dur))}
-function openDP(){document.getElementById('dpr').innerHTML=DP.map(v=>`<button data-dv="${v}">${fmtC(v)}</button>`).join('');document.getElementById('dpop').hidden=false;refreshDP()}
+const DPB=[1,2,3,4,5,6,8];let DPX=[];
+const dpVals=()=>[...new Set([...DPB,...DPX,dur])].sort((a,b)=>a-b);
+function refreshDP(){const p=document.getElementById('dpop');if(!p||p.hidden)return;const r=document.getElementById('dpr');r.innerHTML=dpVals().map(v=>`<button data-dv="${v}"${v===dur?' class="on"':''}>${fmtC(v)}</button>`).join('')+'<button id="dpm">+</button>'}
+function openDP(){document.getElementById('dpop').hidden=false;refreshDP()}
+function addDP(){const m=Math.max(...dpVals());if(m<48)DPX.push(Math.min(48,m+2));refreshDP();const r=document.getElementById('dpr');r.scrollLeft=r.scrollWidth}
 function setDur(v,keep){dur=Math.max(1,Math.min(48,v));if(!keep){const k=DU.findIndex(x=>x[1]===dur);if(k>=0)di=k}drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p||seq[k].rs)seq[k].d=dur;render()}refreshDP()}
 document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const l=seq[cur-1];
  if(lpF){lpF=false;return}
@@ -121,9 +123,7 @@ document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if
  else if(b.id==='md'){mode=mode==='s'?'l':mode==='l'?'j':'s';kb()}
  else if(b.id==='dr'){const pp=document.getElementById('dpop');if(pp.hidden)openDP();else pp.hidden=true}
  else if(b.dataset.dv){setDur(+b.dataset.dv);document.getElementById('dpop').hidden=true}
- else if(b.id==='dcm'){setDur(dur-1)}
- else if(b.id==='dcp'){setDur(dur+1)}
- else if(b.id==='dcx'){document.getElementById('dpop').hidden=true}
+ else if(b.id==='dpm'){addDP()}
  else if(b.id==='sp'){if(l&&l.hn){ins({rs:1,d:dur});render()}else if(l&&!l.br){ins({hn:1});render()}}
  else if(b.id==='en'){if(l&&!l.br){ins({br:1});render()}}
  else if(b.id==='un'){if(cur>0){delRange(cur-1,cur-1);cur--;sel=null;render()}}
