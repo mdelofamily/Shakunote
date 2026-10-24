@@ -9,12 +9,12 @@ h1{font-size:15px;margin:0 0 6px}.m{color:var(--mu);font-size:11px}
 .g{display:grid;gap:3px;margin:3px 0}.w7{grid-template-columns:repeat(7,1fr)}.b14{grid-template-columns:repeat(14,1fr)}
 button{background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:6px 2px;font:inherit}
 button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
-#out{display:flex;flex-direction:row-reverse;gap:4px;margin-top:8px;border-top:1px solid var(--ln);padding:8px 0 230px;overflow-x:auto;min-height:90px}
-.col{display:flex;flex-direction:column;align-items:center;min-width:50px}
-.r{position:relative;display:flex;align-items:center;margin:1px 0}.r .s{width:11px;display:flex;flex-direction:column;align-items:center;gap:2px}
+#out{display:flex;flex-direction:row-reverse;gap:1px;margin-top:8px;border-top:1px solid var(--ln);padding:8px 0 230px;overflow-x:auto;min-height:90px}
+.col{display:flex;flex-direction:column;align-items:center;min-width:46px}
+.r{position:relative;display:flex;align-items:center;margin:1px 0}.r .s{width:8px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .r .ln{position:absolute;left:50%;top:0;bottom:0;border-left:1.2px solid var(--fg)}.dt{width:5px;height:5px;border-radius:50%;background:var(--fg)}
 .gl{fill:none;stroke:var(--fg);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.mk{fill:none;stroke:var(--fg);stroke-width:2.4;stroke-linecap:round}.tx{fill:var(--fg);font:13px "Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif}
-.bh{height:12px;width:30px;position:relative}.bh::after{content:"";position:absolute;left:0;top:5px;width:12px;border-top:1.5px solid var(--fg)}
+.bh{height:12px;width:21px;position:relative}.bh::after{content:"";position:absolute;left:0;top:5px;width:12px;border-top:1.5px solid var(--fg)}
 #pad{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--ln);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
 #pad .row button{height:44px;min-height:44px;padding:0 2px;font-size:13px;overflow:hidden}
 #pk{display:flex;gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;padding:1px 0}#pk .oc{flex:0 0 calc(7*34px);scroll-snap-align:start}
@@ -24,10 +24,10 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.gp{align-self:stretch;border-radius:8px;padding:2px 0;margin:3px 0}.gp .gp{margin-left:4px;margin-right:4px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel{outline:2px solid #e0533d;outline-offset:-1px;border-radius:4px}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}#selp[hidden]{display:none}#dpop[hidden]{display:none}#dpop{margin-bottom:4px}#dpop .row{margin-bottom:4px;gap:3px}#dpop button{padding:0;font-size:15px}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
 </style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
-<div id="pad"><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
+<div id="pad"><div id="dpop" hidden><div class="row" id="dpr"></div><div class="row"><button id="dcm">−</button><b id="dcv" style="flex:2;text-align:center;font-size:16px"></b><button id="dcp">+</button><button id="dcx">✓</button></div></div><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
 <div id="sv" hidden><div class="row" style="margin-bottom:8px"><b style="flex:1">💾 კომპოზიციები</b><button id="sx" style="flex:0 0 auto;padding:4px 12px">✕</button></div>
 <div class="m" style="margin-bottom:6px">მიმდინარე ჩანაწერი ავტომატურად ინახება ამ ბრაუზერში. სახელით შესანახად:</div>
 <div class="row"><input type="text" id="sn" placeholder="სახელი"><button id="ss" style="flex:0 0 auto;padding:7px 12px">შენახვა</button></div>
@@ -65,6 +65,7 @@ function render(){if(sel&&(!seq[sel.a]||sel.b>=seq.length))sel=null;
  let t=0,prev=null,sepB=false,st=null,pb=null,stc=null;const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;
  const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
  seq.forEach((e,i)=>{if(e.br){cols.push([]);if(cur===i+1)mk0();return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1,i,gs:e.g||[]});sepB=true;if(cur===i+1)mk0();return}
+  if(e.rs){c.push({rest:1,side:t%2===0?'R':'L',nd:Math.ceil(e.d/2),i,gs:e.g||[]});t+=e.d;prev=null;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0();return}
   const side=t%2===0?'R':'L',nd=Math.ceil(e.d/2);
   const cand=prev&&prev.p===e.p,rep=cand&&(sepB?!!e.sw:!e.sw);
   const [b,m]=G[N[e.p]]||['?',''];const rg2=pv(e.p)>60?'甲':'乙';let mk='';
@@ -76,21 +77,22 @@ function render(){if(sel&&(!seq[sel.a]||sel.b>=seq.length))sel=null;
  const dots=n=>'<div class="dt"></div>'.repeat(n);
  const colHtml=c=>{let h='',st=[],lastI=-1;const closeTo=n=>{while(st.length>n){const id=st.pop();h+=(GL[id]===lastI?`<div class="gn">×${GN[id]}</div>`:'')+'</div>'}};
  c.forEach(it=>{if(it.cu){h+='<div class="cu"></div>';return}const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k]===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push(gs[j]);h+=`<div class="gp d${Math.min(j+1,4)}">`}
-  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}<div class="s">${it.side==='L'?dots(it.nd):''}</div>${gl(it.b,it.m,it.mk)}<div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
+  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}"><div class="s">${it.side==='L'?dots(it.nd):''}</div><div style="width:35px;height:29px"></div><div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}<div class="s">${it.side==='L'?dots(it.nd):''}</div>${gl(it.b,it.m,it.mk)}<div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
  document.getElementById('out').innerHTML=cols.map(colHtml).join('');
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
  const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=exactG();document.getElementById('gv').textContent=g?'×'+GN[g]:'×';document.getElementById('pst').disabled=!(clip&&clip.length)}}}
-function exportSvg(){const cw=61,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
+function exportSvg(){const cw=52,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
  seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{GLx[id]=i})});for(const id in GLx){let f=seq.findIndex(e=>(e.g||[]).includes(+id));GNx[id]=(seq[f].gc&&seq[f].gc[id])||2}
  lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd+tH,st=[],lastI=-1;
-  const closeTo=n=>{while(st.length>n){const s0=st.pop(),ex=GLx[s0.id]===lastI?16:0;y+=ex;R.push({d:s0.d,x:cx-28.5+4*s0.d,w:57-8*s0.d,y0:s0.y,y1:y+3,lab:ex?GNx[s0.id]:0,cx});y+=3}};
+  const closeTo=n=>{while(st.length>n){const s0=st.pop(),ex=GLx[s0.id]===lastI?16:0;y+=ex;R.push({d:s0.d,x:cx-25.5+1*s0.d,w:51-2*s0.d,y0:s0.y,y1:y+3,lab:ex?GNx[s0.id]:0,cx});y+=3}};
   col.forEach(it=>{const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k].id===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push({id:gs[j],d:j,y});y+=3}
-  if(it.hn){out+=`<line x1="${cx-15}" x2="${cx-3}" y1="${y+6}" y2="${y+6}" class="ex"/>`;y+=12;lastI=it.i;return}
+  if(it.rest){for(let j=0;j<it.nd;j++)out+=`<circle cx="${it.side==='R'?cx+21.5:cx-21.5}" cy="${y+16+(j-(it.nd-1)/2)*8}" r="2.6" fill="#000"/>`;y+=33;lastI=it.i;return}
+  if(it.hn){out+=`<line x1="${cx-10.5}" x2="${cx+1.5}" y1="${y+6}" y2="${y+6}" class="ex"/>`;y+=12;lastI=it.i;return}
   const h=it.b==='＞'?12:GH(it.m,it.mk),rh=h+4;
   if(it.line)out+=`<line x1="${cx}" x2="${cx}" y1="${y}" y2="${y+rh}" class="ex" style="stroke-width:1.2"/>`;
   out+=gl(it.b,it.m,it.mk).replace('<svg ',`<svg x="${cx-17.5}" y="${y+2}" `);
-  for(let j=0;j<it.nd;j++){out+=`<circle cx="${it.side==='R'?cx+23:cx-23}" cy="${y+rh/2+(j-(it.nd-1)/2)*8}" r="2.6" fill="#000"/>`}
+  for(let j=0;j<it.nd;j++){out+=`<circle cx="${it.side==='R'?cx+21.5:cx-21.5}" cy="${y+rh/2+(j-(it.nd-1)/2)*8}" r="2.6" fill="#000"/>`}
   y+=rh;lastI=it.i});closeTo(0);H=Math.max(H,y)});
  const cols_=['#e8e8e8','#d6d6d6','#c4c4c4','#b2b2b2'];R.sort((a,b)=>a.d-b.d);let bg='';R.forEach(r=>{bg+=`<rect x="${r.x}" y="${r.y0}" width="${r.w}" height="${r.y1-r.y0}" rx="8" fill="${cols_[Math.min(r.d,3)]}"/>`;if(r.lab)bg+=`<text x="${r.cx}" y="${r.y1-8}" text-anchor="middle" font-size="12" font-family="system-ui,sans-serif" fill="#000">×${r.lab}</text>`});
  EW=W;EH=H+pd;return `<svg xmlns="http://www.w3.org/2000/svg" width="${EW}" height="${EH}" viewBox="0 0 ${EW} ${EH}"><style>.gl{fill:none;stroke:#000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.mk{fill:none;stroke:#000;stroke-width:2.4;stroke-linecap:round}.tx{fill:#000;font:13px "Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif}.ex{stroke:#000;stroke-width:1.5}</style><rect width="100%" height="100%" fill="#fff"/>${cname?`<text x="${W/2}" y="${pd+12}" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#000">${cname.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</text>`:''}${bg}${out}</svg>`}
@@ -106,14 +108,23 @@ function kb(){const f=(i,o,st,cl)=>{const n=NM[i],p=NK[i]+o,ok=!!N[p];let c;
  return `<button class="kb ${cl||''}" ${ok?'':'disabled'} data-p="${p}" ${st||''}>${c}</button>`};
  let h='';for(let o=4;o<=7;o++)h+=`<div class="oc"><div class="g b14">${BL.map((i,j)=>f(i,o,`style="grid-column:${BC[j]}/span 2"`,'bl')).join('')}</div><div class="g w7">${WH.map(i=>f(i,o)).join('')}</div></div>`;
  document.getElementById('pk').innerHTML=h;document.getElementById('md').textContent={s:'𝄞',l:'ABC',j:'字'}[mode]}
-const drl=()=>{document.getElementById('dr').innerHTML=DU[di][0]+'<small>თვლა</small>'};
+const fmtC=d=>{const w=Math.floor(d/2);return d<2?'½':w+(d%2?'½':'')};
+const drl=()=>{document.getElementById('dr').innerHTML=fmtC(dur)+'<small>თვლა</small>'};
+const DP=[1,2,3,4,5,6,8,12];
+function refreshDP(){const v=document.getElementById('dcv');if(v)v.textContent=fmtC(dur)+' თვლა';document.querySelectorAll('#dpr button').forEach(x=>x.classList.toggle('on',+x.dataset.dv===dur))}
+function openDP(){document.getElementById('dpr').innerHTML=DP.map(v=>`<button data-dv="${v}">${fmtC(v)}</button>`).join('');document.getElementById('dpop').hidden=false;refreshDP()}
+function setDur(v,keep){dur=Math.max(1,Math.min(48,v));if(!keep){const k=DU.findIndex(x=>x[1]===dur);if(k>=0)di=k}drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p||seq[k].rs)seq[k].d=dur;render()}refreshDP()}
 document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const l=seq[cur-1];
  if(lpF){lpF=false;return}
- if(b.dataset.p){ins(fmNext?{p:b.dataset.p,d:dur,fm:1}:{p:b.dataset.p,d:dur});fmNext=false;render()}
+ if(b.dataset.p){ins(fmNext?{p:b.dataset.p,d:dur,fm:1}:{p:b.dataset.p,d:dur});fmNext=false;document.getElementById('dpop').hidden=true;render()}
  else if(b.id==='rg'){fmNext=!fmNext;render()}
  else if(b.id==='md'){mode=mode==='s'?'l':mode==='l'?'j':'s';kb()}
- else if(b.id==='dr'){di=(di+1)%DU.length;dur=DU[di][1];drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p)seq[k].d=dur;render()}}
- else if(b.id==='sp'){if(l&&!l.br&&!l.hn){ins({hn:1});render()}}
+ else if(b.id==='dr'){const pp=document.getElementById('dpop');if(pp.hidden)openDP();else pp.hidden=true}
+ else if(b.dataset.dv){setDur(+b.dataset.dv);document.getElementById('dpop').hidden=true}
+ else if(b.id==='dcm'){setDur(dur-1)}
+ else if(b.id==='dcp'){setDur(dur+1)}
+ else if(b.id==='dcx'){document.getElementById('dpop').hidden=true}
+ else if(b.id==='sp'){if(l&&l.hn){ins({rs:1,d:dur});render()}else if(l&&!l.br){ins({hn:1});render()}}
  else if(b.id==='en'){if(l&&!l.br){ins({br:1});render()}}
  else if(b.id==='un'){if(cur>0){delRange(cur-1,cur-1);cur--;sel=null;render()}}
  else if(b.id==='sx2'){sel=null;render()}
@@ -130,7 +141,7 @@ document.getElementById('ep').onclick=()=>exp('png');
 
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const cp=(o,e)=>{if(e.g!=null){const g=Array.isArray(e.g)?e.g.slice():[e.g];if(g.length)o.g=g}if(e.gc!=null){const gc=typeof e.gc==='object'?{...e.gc}:(e.g!=null&&!Array.isArray(e.g)?{[e.g]:e.gc}:null);if(gc&&Object.keys(gc).length)o.gc=gc}return o};
-const clean=a=>Array.isArray(a)?a.filter(e=>e&&(e.br||e.hn||(N[e.p]&&e.d>0))).map(e=>cp(e.br?{br:1}:e.hn?{hn:1}:{p:e.p,d:e.d,...(e.sw||e.rp?{sw:1}:{}),...(e.fm?{fm:1}:{})},e)):[];
+const clean=a=>Array.isArray(a)?a.filter(e=>e&&(e.br||e.hn||(e.rs&&e.d>0)||(N[e.p]&&e.d>0))).map(e=>cp(e.br?{br:1}:e.hn?{hn:1}:e.rs?{rs:1,d:e.d}:{p:e.p,d:e.d,...(e.sw||e.rp?{sw:1}:{}),...(e.fm?{fm:1}:{})},e)):[];
 const $=id=>document.getElementById(id);let delArm=null;
 function setBak(){if(seq.length)LS.set('shk.bak',seq)}
 function sv(m){$('svm').textContent=m||''}
