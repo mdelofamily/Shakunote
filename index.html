@@ -61,38 +61,39 @@ function staff(p){const o=+p.slice(-1),L=p[0],ac=p[1]==='b',ix=o*7+'CDEFGAB'.ind
  q+=`<ellipse cx="26" cy="${y}" rx="5" ry="3.6" class="sn"/>`+(ac?`<text x="10" y="${y+5}" class="sa">♭</text>`:'');
  const y0=Math.min(y-9,bt-8*hs-4),y1=Math.max(bt+4,y+9);return `<svg viewBox="0 ${y0} 50 ${y1-y0}">${q}</svg>`}
 function render(){if(sel&&(!seq[sel.a]||sel.b>=seq.length))sel=null;
- const GN={},GL={},GF={};seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]=i})});for(const id in GF)GN[id]=(seq[GF[id]].gc&&seq[GF[id]].gc[id])||2;
+ const GN={},GL={},GF={};const plan=(sd,d)=>sd==='R'?{dl:0,dr:Math.ceil(d/2)}:(d<=2?{dl:1,dr:0}:{dl:1,dr:Math.floor(d/2)});seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]=i})});for(const id in GF)GN[id]=(seq[GF[id]].gc&&seq[GF[id]].gc[id])||2;
  let t=0,prev=null,sepB=false,st=null,pb=null,stc=null;const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;
  const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
  seq.forEach((e,i)=>{if(e.br){cols.push([]);if(cur===i+1)mk0();return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1,i,gs:e.g||[]});sepB=true;if(cur===i+1)mk0();return}
-  if(e.rs){c.push({rest:1,side:t%2===0?'R':'L',nd:Math.ceil(e.d/2),i,gs:e.g||[]});t+=e.d;prev=null;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0();return}
+  if(e.rs){{const sd=t%2===0?'R':'L';c.push({rest:1,side:sd,nd:Math.ceil(e.d/2),i,gs:e.g||[],...plan(sd,e.d)})};t+=e.d;prev=null;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0();return}
   const side=t%2===0?'R':'L',nd=Math.ceil(e.d/2);
   const cand=prev&&prev.p===e.p,rep=cand&&(sepB?!!e.sw:!e.sw);
   const [b,m]=G[N[e.p]]||['?',''];const rg2=pv(e.p)>60?'甲':'乙';let mk='';
   if(!rep){const imp=(pb==='リ'&&(b==='ロ'||b==='ツ'))?'甲':((pb==='ロ'||pb==='ツ')&&st==='甲'&&b==='リ')?'乙':st;
    if((SHR.has(b+'|'+m)&&imp!==rg2)||e.fm)mk=rg2;st=rg2;pb=b}
   const line=e.d===1&&((seq[i-1]&&seq[i-1].d===1)||(seq[i+1]&&seq[i+1].d===1));
-  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,i,gs:e.g||[]});t+=e.d;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
+  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,i,gs:e.g||[],...plan(side,e.d)});t+=e.d;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
  lay=cols.map(c=>c.filter(x=>!x.cu));
  const dots=n=>'<div class="dt"></div>'.repeat(n);
  const colHtml=c=>{let h='',st=[],lastI=-1;const closeTo=n=>{while(st.length>n){const id=st.pop();h+=(GL[id]===lastI?`<div class="gn">×${GN[id]}</div>`:'')+'</div>'}};
  c.forEach(it=>{if(it.cu){h+='<div class="cu"></div>';return}const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k]===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push(gs[j]);h+=`<div class="gp d${Math.min(j+1,4)}">`}
-  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}"><div class="s">${it.side==='L'?dots(it.nd):''}</div><div style="width:35px;height:29px"></div><div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}<div class="s">${it.side==='L'?dots(it.nd):''}</div>${gl(it.b,it.m,it.mk)}<div class="s">${it.side==='R'?dots(it.nd):''}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
+  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}"><div class="s">${dots(it.dl)}</div><div style="width:35px;height:29px"></div><div class="s">${dots(it.dr)}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}<div class="s">${dots(it.dl)}</div>${gl(it.b,it.m,it.mk)}<div class="s">${dots(it.dr)}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
  document.getElementById('out').innerHTML=cols.map(colHtml).join('');
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
  const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=exactG();document.getElementById('gv').textContent=g?'×'+GN[g]:'×';document.getElementById('pst').disabled=!(clip&&clip.length)}}}
+const dsv=(cx,cy,it)=>{let o='';const l=it.dl,r=it.dr;for(let j=0;j<l;j++)o+=`<circle cx="${cx-21.5}" cy="${cy+(j-(l-1)/2)*8}" r="2.6" fill="#000"/>`;for(let j=0;j<r;j++)o+=`<circle cx="${cx+21.5}" cy="${cy+(j-(r-1)/2)*8}" r="2.6" fill="#000"/>`;return o};
 function exportSvg(){const cw=52,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
  seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{GLx[id]=i})});for(const id in GLx){let f=seq.findIndex(e=>(e.g||[]).includes(+id));GNx[id]=(seq[f].gc&&seq[f].gc[id])||2}
  lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd+tH,st=[],lastI=-1;
   const closeTo=n=>{while(st.length>n){const s0=st.pop(),ex=GLx[s0.id]===lastI?16:0;y+=ex;R.push({d:s0.d,x:cx-25.5+1*s0.d,w:51-2*s0.d,y0:s0.y,y1:y+3,lab:ex?GNx[s0.id]:0,cx});y+=3}};
   col.forEach(it=>{const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k].id===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push({id:gs[j],d:j,y});y+=3}
-  if(it.rest){for(let j=0;j<it.nd;j++)out+=`<circle cx="${it.side==='R'?cx+21.5:cx-21.5}" cy="${y+16+(j-(it.nd-1)/2)*8}" r="2.6" fill="#000"/>`;y+=33;lastI=it.i;return}
+  if(it.rest){out+=dsv(cx,y+16,it);y+=33;lastI=it.i;return}
   if(it.hn){out+=`<line x1="${cx-10.5}" x2="${cx+1.5}" y1="${y+6}" y2="${y+6}" class="ex"/>`;y+=12;lastI=it.i;return}
   const h=it.b==='＞'?12:GH(it.m,it.mk),rh=h+4;
   if(it.line)out+=`<line x1="${cx}" x2="${cx}" y1="${y}" y2="${y+rh}" class="ex" style="stroke-width:1.2"/>`;
   out+=gl(it.b,it.m,it.mk).replace('<svg ',`<svg x="${cx-17.5}" y="${y+2}" `);
-  for(let j=0;j<it.nd;j++){out+=`<circle cx="${it.side==='R'?cx+21.5:cx-21.5}" cy="${y+rh/2+(j-(it.nd-1)/2)*8}" r="2.6" fill="#000"/>`}
+  out+=dsv(cx,y+rh/2,it);
   y+=rh;lastI=it.i});closeTo(0);H=Math.max(H,y)});
  const cols_=['#e8e8e8','#d6d6d6','#c4c4c4','#b2b2b2'];R.sort((a,b)=>a.d-b.d);let bg='';R.forEach(r=>{bg+=`<rect x="${r.x}" y="${r.y0}" width="${r.w}" height="${r.y1-r.y0}" rx="8" fill="${cols_[Math.min(r.d,3)]}"/>`;if(r.lab)bg+=`<text x="${r.cx}" y="${r.y1-8}" text-anchor="middle" font-size="12" font-family="system-ui,sans-serif" fill="#000">×${r.lab}</text>`});
  EW=W;EH=H+pd;return `<svg xmlns="http://www.w3.org/2000/svg" width="${EW}" height="${EH}" viewBox="0 0 ${EW} ${EH}"><style>.gl{fill:none;stroke:#000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.mk{fill:none;stroke:#000;stroke-width:2.4;stroke-linecap:round}.tx{fill:#000;font:13px "Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif}.ex{stroke:#000;stroke-width:1.5}</style><rect width="100%" height="100%" fill="#fff"/>${cname?`<text x="${W/2}" y="${pd+12}" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#000">${cname.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</text>`:''}${bg}${out}</svg>`}
