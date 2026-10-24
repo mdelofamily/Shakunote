@@ -9,7 +9,7 @@ h1{font-size:15px;margin:0 0 6px}.m{color:var(--mu);font-size:11px}
 .g{display:grid;gap:3px;margin:3px 0}.w7{grid-template-columns:repeat(7,1fr)}.b14{grid-template-columns:repeat(14,1fr)}
 button{background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:6px 2px;font:inherit}
 button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
-#out{display:flex;flex-direction:row-reverse;gap:9px;margin-top:8px;border-top:1px solid var(--ln);padding:8px 0 230px;overflow-x:auto;min-height:90px}
+#out{display:flex;flex-direction:row-reverse;gap:4px;margin-top:8px;border-top:1px solid var(--ln);padding:8px 0 230px;overflow-x:auto;min-height:90px}
 .col{display:flex;flex-direction:column;align-items:center;min-width:50px}
 .r{position:relative;display:flex;align-items:center;margin:1px 0}.r .s{width:11px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .r .ln{position:absolute;left:50%;top:0;bottom:0;border-left:1.2px solid var(--fg)}.dt{width:5px;height:5px;border-radius:50%;background:var(--fg)}
@@ -24,7 +24,7 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.gp{border-radius:8px;padding:2px 3px;margin:4px 0}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel{outline:2px solid #e0533d;outline-offset:-1px;border-radius:4px}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+.gp{align-self:stretch;border-radius:8px;padding:2px 0;margin:3px 0}.gp .gp{margin-left:4px;margin-right:4px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel{outline:2px solid #e0533d;outline-offset:-1px;border-radius:4px}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
 </style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
 <div id="pad"><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
@@ -81,10 +81,10 @@ function render(){if(sel&&(!seq[sel.a]||sel.b>=seq.length))sel=null;
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
  const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=exactG();document.getElementById('gv').textContent=g?'×'+GN[g]:'×';document.getElementById('pst').disabled=!(clip&&clip.length)}}}
-function exportSvg(){const cw=58,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
+function exportSvg(){const cw=61,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
  seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{GLx[id]=i})});for(const id in GLx){let f=seq.findIndex(e=>(e.g||[]).includes(+id));GNx[id]=(seq[f].gc&&seq[f].gc[id])||2}
  lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd+tH,st=[],lastI=-1;
-  const closeTo=n=>{while(st.length>n){const s0=st.pop(),ex=GLx[s0.id]===lastI?16:0;y+=ex;R.push({d:s0.d,x:cx-27+3*s0.d,w:54-6*s0.d,y0:s0.y,y1:y+3,lab:ex?GNx[s0.id]:0,cx});y+=3}};
+  const closeTo=n=>{while(st.length>n){const s0=st.pop(),ex=GLx[s0.id]===lastI?16:0;y+=ex;R.push({d:s0.d,x:cx-28.5+4*s0.d,w:57-8*s0.d,y0:s0.y,y1:y+3,lab:ex?GNx[s0.id]:0,cx});y+=3}};
   col.forEach(it=>{const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k].id===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push({id:gs[j],d:j,y});y+=3}
   if(it.hn){out+=`<line x1="${cx-15}" x2="${cx-3}" y1="${y+6}" y2="${y+6}" class="ex"/>`;y+=12;lastI=it.i;return}
   const h=it.b==='＞'?12:GH(it.m,it.mk),rh=h+4;
