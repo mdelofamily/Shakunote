@@ -24,7 +24,7 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}.tri{width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-bottom:5px solid var(--fg)}.ln2{position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:4px;border-left:1.2px solid var(--fg);border-right:1.2px solid var(--fg);box-sizing:border-box}#selp[hidden]{display:none}#dpop[hidden]{display:none}#dpop{margin-bottom:4px}#dpop .row{margin-bottom:4px;gap:3px}#dpop button{padding:0;font-size:15px}#dpr{overflow-x:auto;flex-wrap:nowrap}#dpr button{flex:1 0 40px}#dpop button.on{background:#e0533d;border-color:#e0533d;color:#fff;font-weight:700}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}.tri{display:block}.tri path{fill:none;stroke:var(--fg);stroke-width:1.2;stroke-linejoin:round}.ln2{position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:4px;border-left:1.2px solid var(--fg);border-right:1.2px solid var(--fg);box-sizing:border-box}#selp[hidden]{display:none}#dpop[hidden]{display:none}#dpop{margin-bottom:4px}#dpop .row{margin-bottom:4px;gap:3px}#dpop button{padding:0;font-size:15px}#dpr{overflow-x:auto;flex-wrap:nowrap}#dpr button{flex:1 0 40px}#dpop button.on{background:#e0533d;border-color:#e0533d;color:#fff;font-weight:700}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
 </style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
 <div id="pad"><div id="dpop" hidden><div class="row" id="dpr"></div></div><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
@@ -42,13 +42,13 @@ const NM=['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B'],NK=['C
 const DU=[['½',1],['1',2],['1½',3],['2',4],['3',6],['4',8]];
 let sel=null,fmNext=false,cname='',seq=[],cur=0,dur=2,mode='s',di=1,lay=[],EW=0,EH=0;
 const me=(x,y)=>`<path d="M0 0L8 12M8 0L1 13" transform="translate(${x},${y})" class="mk"/>`;
-const Y0=(m,reg)=>(m.includes('K')||reg)?2:14,GH=(m,reg)=>(66-Y0(m,reg))*.55;
+const Y0=(m,reg)=>(m.includes('K')||reg||/[二三四五]/.test(m))?2:14,GH=(m,reg)=>(66-Y0(m,reg))*.55;
 function gl(b,m,reg){let s='';
  if(m.includes('D'))s+='<text x="2" y="30" class="tx">大</text>'+me(3,34);else if(m.includes('M'))s+=me(3,34);
  if(m.includes('C'))s+='<text x="1" y="42" class="tx">中</text>';
  if(m.includes('K'))s+='<text x="26" y="10" class="tx">大</text><text x="26" y="21" class="tx">甲</text>';
  const n=[...m].filter(c=>'二三四五'.includes(c));
- if(n.length>1)n.forEach((c,i)=>s+=`<text x="1" y="${26+i*11}" class="tx">${c}</text>`);else if(n.length)s+=b==='ハ'?`<text x="22" y="56" class="tx">${n[0]}</text>`:`<text x="40" y="30" class="tx">${n[0]}</text>`;
+ if(n.length>1)n.forEach((c,i)=>s+=`<text x="1" y="${26+i*11}" class="tx">${c}</text>`);else if(n.length)s+=`<text x="34" y="21" class="tx" style="font-size:17px">${n[0]}</text>`;
  if(reg)s+=`<text x="48" y="14" class="tx">${reg}</text>`;
  if(b==='＞')return `<svg width="35" height="12" viewBox="0 32 64 22"><g transform="translate(18,24) translate(20,19) scale(.6) translate(-20,-19)" class="gl" style="stroke-width:7.5"><path d="${B[b]}"/></g></svg>`;
  const y0=Y0(m,reg);return `<svg width="35" height="${GH(m,reg)}" viewBox="0 ${y0} 64 ${66-y0}">${b==='＞'?`<g transform="translate(18,24) translate(20,19) scale(.6) translate(-20,-19)" class="gl" style="stroke-width:7.5"><path d="${B[b]}"/></g>`:`<g transform="translate(18,24)" class="gl"><path d="${B[b]}"/></g>`}${s}</svg>`}
@@ -61,28 +61,28 @@ function staff(p){const o=+p.slice(-1),L=p[0],ac=p[1]==='b',ix=o*7+'CDEFGAB'.ind
  q+=`<ellipse cx="26" cy="${y}" rx="5" ry="3.6" class="sn"/>`+(ac?`<text x="10" y="${y+5}" class="sa">♭</text>`:'');
  const y0=Math.min(y-9,bt-8*hs-4),y1=Math.max(bt+4,y+9);return `<svg viewBox="0 ${y0} 50 ${y1-y0}">${q}</svg>`}
 function render(){if(sel&&(!seq[sel.a]||sel.b>=seq.length))sel=null;
- const GN={},GL={},GF={};const plan=(sd,d)=>sd==='O'?{dl:0,dr:0}:sd==='R'?{dl:0,dr:Math.ceil(d/2)}:(d<=2?{dl:1,dr:0}:{dl:1,dr:Math.ceil((d-1)/2)});seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]=i})});for(const id in GF)GN[id]=(seq[GF[id]].gc&&seq[GF[id]].gc[id])||2;
+ const GN={},GL={},GF={};const plan=(sd,d)=>(sd==='O'||d===0)?{dl:0,dr:0}:sd==='R'?{dl:0,dr:Math.ceil(d/2)}:(d<=2?{dl:1,dr:0}:{dl:1,dr:Math.ceil((d-1)/2)});seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]=i})});for(const id in GF)GN[id]=(seq[GF[id]].gc&&seq[GF[id]].gc[id])||2;
  let t=0,prev=null,pd=null,sepB=false,st=null,pb=null,stc=null;const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;
  const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
  seq.forEach((e,i)=>{if(e.br){cols.push([]);if(cur===i+1)mk0();return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1,i,gs:e.g||[]});sepB=true;if(cur===i+1)mk0();return}
   if(e.rs){{const off=!Number.isInteger(t),sd=off?'O':(t%2===0?'R':'L');c.push({rest:1,side:sd,nd:Math.ceil(e.d/2),i,gs:e.g||[],tri:off&&pd!==0.5,...plan(sd,e.d)})};pd=e.d;t+=e.d;prev=null;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0();return}
-  const off=!Number.isInteger(t),side=off?'O':(t%2===0?'R':'L'),nd=Math.ceil(e.d/2),tri=off&&pd!==0.5;
+  const off=!Number.isInteger(t),side=off?'O':(t%2===0?'R':'L'),nd=Math.ceil(e.d/2),tri=off&&pd!==0.5&&e.d>0;
   const cand=prev&&prev.p===e.p,rep=cand&&(sepB?!!e.sw:!e.sw);
   const [b,m]=G[N[e.p]]||['?',''];const rg2=pv(e.p)>60?'甲':'乙';let mk='';
   if(!rep){const imp=(pb==='リ'&&(b==='ロ'||b==='ツ'))?'甲':((pb==='ロ'||pb==='ツ')&&st==='甲'&&b==='リ')?'乙':st;
    if((SHR.has(b+'|'+m)&&imp!==rg2)||e.fm)mk=rg2;st=rg2;pb=b}
   const line=e.d===1&&((seq[i-1]&&seq[i-1].d===1)||(seq[i+1]&&seq[i+1].d===1));
-  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,dline:e.d===0.5&&((seq[i-1]&&seq[i-1].d===0.5)||(seq[i+1]&&seq[i+1].d===0.5)),tri,i,gs:e.g||[],...plan(side,e.d)});t+=e.d;pd=e.d;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
+  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,dline:e.d===0.5&&((seq[i-1]&&seq[i-1].d===0.5)||(seq[i+1]&&seq[i+1].d===0.5)),tri,i,gs:e.g||[],...plan(side,e.d)});t+=e.d;if(e.d>0)pd=e.d;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
  lay=cols.map(c=>c.filter(x=>!x.cu));
  const dots=n=>'<div class="dt"></div>'.repeat(n);
  const colHtml=c=>{let h='',st=[],lastI=-1;const closeTo=n=>{while(st.length>n){const id=st.pop();h+=(GL[id]===lastI?`<div class="gn">×${GN[id]}</div>`:'')+'</div>'}};
  c.forEach(it=>{if(it.cu){h+='<div class="cu"></div>';return}const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k]===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push(gs[j]);h+=`<div class="gp d${Math.min(j+1,4)}">`}
-  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}"><div class="s">${it.tri?'<span class="tri"></span>':dots(it.dl)}</div><div style="width:35px;height:29px"></div><div class="s">${dots(it.dr)}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}${it.dline?'<div class="ln2"></div>':''}<div class="s">${it.tri?'<span class="tri"></span>':dots(it.dl)}</div>${gl(it.b,it.m,it.mk)}<div class="s">${dots(it.dr)}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
+  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}"><div class="s">${it.tri?'<svg class="tri" width="8" height="8" viewBox="0 0 8 8"><path d="M4 1.2L7.2 6.8H0.8Z"/></svg>':dots(it.dl)}</div><div style="width:35px;height:29px"></div><div class="s">${dots(it.dr)}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}${it.dline?'<div class="ln2"></div>':''}<div class="s">${it.tri?'<svg class="tri" width="8" height="8" viewBox="0 0 8 8"><path d="M4 1.2L7.2 6.8H0.8Z"/></svg>':dots(it.dl)}</div>${gl(it.b,it.m,it.mk)}<div class="s">${dots(it.dr)}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
  document.getElementById('out').innerHTML=cols.map(colHtml).join('');
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
  const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=exactG();document.getElementById('gv').textContent=g?'×'+GN[g]:'×';document.getElementById('pst').disabled=!(clip&&clip.length)}}}
-const dsv=(cx,cy,it)=>{let o='';if(it.tri)o+=`<polygon points="${cx-24.5},${cy-2} ${cx-18.5},${cy-2} ${cx-21.5},${cy-8}" fill="#000"/>`;const l=it.dl,r=it.dr;for(let j=0;j<l;j++)o+=`<circle cx="${cx-21.5}" cy="${cy+(j-(l-1)/2)*8}" r="2.6" fill="#000"/>`;for(let j=0;j<r;j++)o+=`<circle cx="${cx+21.5}" cy="${cy+(j-(r-1)/2)*8}" r="2.6" fill="#000"/>`;return o};
+const dsv=(cx,cy,it)=>{let o='';if(it.tri)o+=`<polygon points="${cx-24.8},${cy-1.5} ${cx-18.2},${cy-1.5} ${cx-21.5},${cy-8}" fill="none" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>`;const l=it.dl,r=it.dr;for(let j=0;j<l;j++)o+=`<circle cx="${cx-21.5}" cy="${cy+(j-(l-1)/2)*8}" r="2.6" fill="#000"/>`;for(let j=0;j<r;j++)o+=`<circle cx="${cx+21.5}" cy="${cy+(j-(r-1)/2)*8}" r="2.6" fill="#000"/>`;return o};
 function exportSvg(){const cw=52,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
  seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{GLx[id]=i})});for(const id in GLx){let f=seq.findIndex(e=>(e.g||[]).includes(+id));GNx[id]=(seq[f].gc&&seq[f].gc[id])||2}
  lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd+tH,st=[],lastI=-1;
@@ -112,12 +112,12 @@ function kb(){const f=(i,o,st,cl)=>{const n=NM[i],p=NK[i]+o,ok=!!N[p];let c;
  document.getElementById('pk').innerHTML=h;document.getElementById('md').textContent={s:'𝄞',l:'ABC',j:'字'}[mode]}
 const fmtC=d=>{const c=d/2,w=Math.floor(c),f=c-w,fr=f===0?'':f===.25?'¼':f===.5?'½':f===.75?'¾':'';return w===0?(fr||String(c)):w+fr};
 const drl=()=>{document.getElementById('dr').innerHTML=fmtC(dur)+'<small>თვლა</small>'};
-const DPB=[0.5,1,1.5,2,3,4,5,6,8];let DPX=[];
+const DPB=[0,0.5,1,1.5,2,3,4,5,6,8];let DPX=[];
 const dpVals=()=>[...new Set([...DPB,...DPX,dur])].sort((a,b)=>a-b);
 function refreshDP(){const p=document.getElementById('dpop');if(!p||p.hidden)return;const r=document.getElementById('dpr');r.innerHTML=dpVals().map(v=>`<button data-dv="${v}"${v===dur?' class="on"':''}>${fmtC(v)}</button>`).join('')+'<button id="dpm">+</button>'}
 function openDP(){document.getElementById('dpop').hidden=false;refreshDP()}
 function addDP(){const m=Math.max(...dpVals());if(m<48)DPX.push(Math.min(48,m+2));refreshDP();const r=document.getElementById('dpr');r.scrollLeft=r.scrollWidth}
-function setDur(v,keep){dur=Math.max(0.5,Math.min(48,v));if(!keep){const k=DU.findIndex(x=>x[1]===dur);if(k>=0)di=k}drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p||seq[k].rs)seq[k].d=dur;render()}refreshDP()}
+function setDur(v,keep){dur=Math.max(0,Math.min(48,v));if(!keep){const k=DU.findIndex(x=>x[1]===dur);if(k>=0)di=k}drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p||seq[k].rs)seq[k].d=dur;render()}refreshDP()}
 document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const l=seq[cur-1];
  if(lpF){lpF=false;return}
  if(b.dataset.p){ins(fmNext?{p:b.dataset.p,d:dur,fm:1}:{p:b.dataset.p,d:dur});fmNext=false;document.getElementById('dpop').hidden=true;render()}
@@ -143,7 +143,7 @@ document.getElementById('ep').onclick=()=>exp('png');
 
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const cp=(o,e)=>{if(e.g!=null){const g=Array.isArray(e.g)?e.g.slice():[e.g];if(g.length)o.g=g}if(e.gc!=null){const gc=typeof e.gc==='object'?{...e.gc}:(e.g!=null&&!Array.isArray(e.g)?{[e.g]:e.gc}:null);if(gc&&Object.keys(gc).length)o.gc=gc}return o};
-const clean=a=>Array.isArray(a)?a.filter(e=>e&&(e.br||e.hn||(e.rs&&e.d>0)||(N[e.p]&&e.d>0))).map(e=>cp(e.br?{br:1}:e.hn?{hn:1}:e.rs?{rs:1,d:e.d}:{p:e.p,d:e.d,...(e.sw||e.rp?{sw:1}:{}),...(e.fm?{fm:1}:{})},e)):[];
+const clean=a=>Array.isArray(a)?a.filter(e=>e&&(e.br||e.hn||(e.rs&&e.d>0)||(N[e.p]&&e.d>=0))).map(e=>cp(e.br?{br:1}:e.hn?{hn:1}:e.rs?{rs:1,d:e.d}:{p:e.p,d:e.d,...(e.sw||e.rp?{sw:1}:{}),...(e.fm?{fm:1}:{})},e)):[];
 const $=id=>document.getElementById(id);let delArm=null;
 function setBak(){if(seq.length)LS.set('shk.bak',seq)}
 function sv(m){$('svm').textContent=m||''}
