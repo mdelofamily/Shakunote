@@ -16,13 +16,13 @@ html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}butto
 :root{--bg:#fff;--fg:#1a1a1a;--mu:#777;--ln:#ddd;--bt:#f1f1f1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161616;--fg:#eee;--mu:#999;--ln:#333;--bt:#262626;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#161616;--fg:#eee;--mu:#999;--ln:#333;--bt:#262626;color-scheme:dark}
-body{margin:0;padding:10px;background:var(--bg);color:var(--fg);font:13px system-ui,sans-serif}
+body{margin:0;padding:4px 10px;background:var(--bg);color:var(--fg);font:13px system-ui,sans-serif}
 h1{font-size:15px;margin:0 0 6px}.m{color:var(--mu);font-size:11px}
 .row{display:flex;gap:4px;align-items:center}.row button{flex:1}
 .g{display:grid;gap:3px;margin:3px 0}.w7{grid-template-columns:repeat(7,1fr)}.b14{grid-template-columns:repeat(14,1fr)}
-button{background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:6px 2px;font:inherit}
+button{background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:4px 2px;font:inherit}
 button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
-#out{display:flex;flex-direction:row-reverse;gap:1px;margin-top:8px;border-top:1px solid var(--ln);padding:8px 0 230px;overflow-x:auto;min-height:90px}
+#out{display:flex;flex-direction:row-reverse;gap:1px;margin-top:2px;border-top:1px solid var(--ln);padding:4px 0 230px;overflow-x:auto;min-height:90px}
 .col{display:flex;flex-direction:column;align-items:center;min-width:46px}
 .r{position:relative;display:flex;align-items:center;margin:1px 0}.r .s{width:8px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .r .ln{position:absolute;left:50%;top:0;bottom:0;border-left:1px solid var(--fg)}.dt{width:5px;height:5px;border-radius:50%;background:var(--fg)}
@@ -228,6 +228,7 @@ document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if
  else if(b.id==='cut'){cutSel()}
  else if(b.id==='pst'){pasteSel()}
  else if(b.id==='gpl'){setCnt(1)}
+ else if(b.id==='gx होतात'){}
  else if(b.id==='gx'){unG()}};
 document.getElementById('cl').onclick=()=>{saveHistory();seq=[];cur=0;cname='';render()};
 document.getElementById('out').onclick=e=>{if(lpO){lpO=false;return}const r=e.target.closest('[data-i]');if(sel){if(r){const i=+r.dataset.i;sel.a=Math.min(sel.anc,i);sel.b=Math.max(sel.anc,i)}else sel=null;render();return}if(r){const i=+r.dataset.i,bb=r.getBoundingClientRect();cur=(e.clientY-bb.top<bb.height/2)?i:i+1}else cur=seq.length;render()};
