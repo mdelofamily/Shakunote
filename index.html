@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ka"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#161616"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest"><title>შაკუჰაჩის კონვერტერი</title><style>
+<!DOCTYPE html><html lang="ka"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#161616"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest"><title>შაკუჰაჩის კონვერტორი</title><style>
 html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}button{touch-action:manipulation;user-select:none;-webkit-user-select:none}
 :root{--bg:#fff;--fg:#1a1a1a;--mu:#777;--ln:#ddd;--bt:#f1f1f1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161616;--fg:#eee;--mu:#999;--ln:#333;--bt:#262626;color-scheme:dark}}
@@ -24,10 +24,10 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}.tri{display:block}.tri path{fill:none;stroke:var(--fg);stroke-width:1.2;stroke-linejoin:round}.ln2{position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:4px;border-left:1.2px solid var(--fg);border-right:1.2px solid var(--fg);box-sizing:border-box}#selp[hidden]{display:none}#dpop[hidden]{display:none}#dpop{margin-bottom:4px}#dpop .row{margin-bottom:4px;gap:3px}#dpop button{padding:0;font-size:15px}#dpr{overflow-x:auto;flex-wrap:nowrap}#dpr button{flex:1 0 40px}#dpop button.on{background:#e0533d;border-color:#e0533d;color:#fff;font-weight:700}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}.tri{display:block;position:absolute;left:5px;bottom:0;pointer-events:none}.tri path{fill:none;stroke:var(--fg);stroke-width:1.2;stroke-linejoin:round}.ln2{position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:4px;border-left:1.2px solid var(--fg);border-right:1.2px solid var(--fg);box-sizing:border-box}#selp[hidden]{display:none}#dpop[hidden]{display:none}#dpop{margin-bottom:4px}#dpop .row{margin-bottom:4px;gap:3px}#dpop button{padding:0;font-size:15px}#dpr{overflow-x:auto;flex-wrap:nowrap}#dpr button{flex:1 0 40px}#dpop button.on{background:#e0533d;border-color:#e0533d;color:#fff;font-weight:700}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
 </style></head><body><div class="row"><span class="m" id="tot" style="flex:1"></span><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
 <div id="out"></div>
-<div id="pad"><div id="dpop" hidden><div class="row" id="dpr"></div></div><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
+<div id="pad"><div id="dpop" hidden><div class="row" id="dpr"></div></div><div id="selp" class="row" hidden><button id="gx">✕</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px"></b><button id="gpl">+</button><button id="trg">△</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div><div id="pk"></div><div class="row"><button id="dr" style="flex:1"></button><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div></div>
 <div id="sv" hidden><div class="row" style="margin-bottom:8px"><b style="flex:1">💾 კომპოზიციები</b><button id="sx" style="flex:0 0 auto;padding:4px 12px">✕</button></div>
 <div class="m" style="margin-bottom:6px">მიმდინარე ჩანაწერი ავტომატურად ინახება ამ ბრაუზერში. სახელით შესანახად:</div>
 <div class="row"><input type="text" id="sn" placeholder="სახელი"><button id="ss" style="flex:0 0 auto;padding:7px 12px">შენახვა</button></div>
@@ -60,50 +60,30 @@ function staff(p){const o=+p.slice(-1),L=p[0],ac=p[1]==='b',ix=o*7+'CDEFGAB'.ind
  if(ix>8)for(let e=10;e<=ix;e+=2)q+=`<line x1="19" x2="33" y1="${bt-e*hs}" y2="${bt-e*hs}" class="sl"/>`;
  q+=`<ellipse cx="26" cy="${y}" rx="5" ry="3.6" class="sn"/>`+(ac?`<text x="10" y="${y+5}" class="sa">♭</text>`:'');
  const y0=Math.min(y-9,bt-8*hs-4),y1=Math.max(bt+4,y+9);return `<svg viewBox="0 ${y0} 50 ${y1-y0}">${q}</svg>`}
-function resolveNoteSide(note, index){
-  if(note && (note.side==='O'||note.side==='R'||note.side==='L')) return note.side;
-  return (index % 2 === 0) ? 'R' : 'L';
-}
-function mutateRangeSelection(range, mutator){
-  if(!range || !Number.isInteger(range.a) || !Number.isInteger(range.b)) return false;
-  const start=Math.min(range.a, range.b), end=Math.max(range.a, range.b);
-  for(let i=start;i<=end;i++){
-    const note=seq[i];
-    if(!note) continue;
-    mutator(note, i);
-  }
-  return true;
-}
-function setSelectionTriangle(enabled, range=sel){
-  if(!range) return false;
-  const changed=mutateRangeSelection(range, note => {
-    note.triangle = !!enabled;
-  });
-  if(changed) render();
-  return changed;
-}
 function render(){if(sel&&(!seq[sel.a]||sel.b>=seq.length))sel=null;
- const GN={},GL={},GF={};const plan=(sd,d)=>(sd==='O'||d===0)?{dl:0,dr:0}:sd==='R'?{dl:0,dr:Math.ceil(d/2)}:(d<=2?{dl:1,dr:0}:{dl:1,dr:Math.ceil((d-1)/2)});seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]=i})});for(const id in GF)GN[id]=(seq[GF[id]].gc&&seq[GF[id]].gc[id])||2;
- let t=0,prev=null,pd=null,sepB=false,st=null,pb=null,stc=null;const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
+ const GN={},GL={},GF={};const TRI='<svg class="tri" width="8" height="8" viewBox="0 0 8 8"><path d="M4 1.2L7.2 6.8H0.8Z"/></svg>';
+const plan=(sd,d)=>(sd==='O'||d===0)?{dl:0,dr:0}:sd==='R'?{dl:0,dr:Math.ceil(d/2)}:(d<=2?{dl:1,dr:0}:{dl:1,dr:Math.ceil((d-1)/2)});seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]=i})});for(const id in GF)GN[id]=(seq[GF[id]].gc&&seq[GF[id]].gc[id])||2;
+ let t=0,prev=null,nph=0,sepB=false,st=null,pb=null,stc=null;const nextPh=(ph,d)=>{if(d<=0)return ph;let n=((ph+d)%2+2)%2;if(ph===1&&n===1)n=0;return n};const cols=[[]];if(cur<0||cur>seq.length)cur=seq.length;
+ const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
  seq.forEach((e,i)=>{if(e.br){cols.push([]);if(cur===i+1)mk0();return}const c=cols[cols.length-1];if(e.hn){c.push({hn:1,i,gs:e.g||[]});sepB=true;if(cur===i+1)mk0();return}
-  if(e.rs){const off=!Number.isInteger(t),sd=resolveNoteSide(e,i);c.push({rest:1,side:sd,nd:Math.ceil(e.d/2),i,gs:e.g||[],tri:!!e.triangle || !!e.tri || (off&&pd!==0.5),...plan(sd,e.d)});pd=e.d;t+=e.d;prev=null;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0();return}
-  const off=!Number.isInteger(t),side=resolveNoteSide(e,i),nd=Math.ceil(e.d/2),tri=!!e.triangle || !!e.tri || (off&&pd!==0.5&&e.d>0);
+  if(e.rs){{if(e.ph===undefined)e.ph=nph;const sd=e.ph===0?'R':e.ph===1?'L':'O';c.push({rest:1,side:sd,nd:Math.ceil(e.d/2),i,gs:e.g||[],tri:!!e.tr,...plan(sd,e.d)})};nph=nextPh(e.ph,e.d);t+=e.d;prev=null;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0();return}
+  if(e.ph===undefined)e.ph=nph;const side=e.ph===0?'R':e.ph===1?'L':'O',nd=Math.ceil(e.d/2),tri=!!e.tr;
   const cand=prev&&prev.p===e.p,rep=cand&&(sepB?!!e.sw:!e.sw);
   const [b,m]=G[N[e.p]]||['?',''];const rg2=pv(e.p)>60?'甲':'乙';let mk='';
   if(!rep){const imp=(pb==='リ'&&(b==='ロ'||b==='ツ'))?'甲':((pb==='ロ'||pb==='ツ')&&st==='甲'&&b==='リ')?'乙':st;
    if((SHR.has(b+'|'+m)&&imp!==rg2)||e.fm)mk=rg2;st=rg2;pb=b}
   const line=e.d===1&&((seq[i-1]&&seq[i-1].d===1)||(seq[i+1]&&seq[i+1].d===1));
-  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,dline:e.d===0.5&&((seq[i-1]&&seq[i-1].d===0.5)||(seq[i+1]&&seq[i+1].d===0.5)),tri,i,gs:e.g||[],...plan(side,e.d)});t+=e.d;if(e.d>0)pd=e.d;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
+  c.push({b:rep?'＞':b,m:rep?'':m,mk,side,nd,line,dline:e.d===0.5&&((seq[i-1]&&seq[i-1].d===0.5)||(seq[i+1]&&seq[i+1].d===0.5)),tri,i,gs:e.g||[],...plan(side,e.d)});t+=e.d;nph=nextPh(e.ph,e.d);prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
  lay=cols.map(c=>c.filter(x=>!x.cu));
  const dots=n=>'<div class="dt"></div>'.repeat(n);
  const colHtml=c=>{let h='',st=[],lastI=-1;const closeTo=n=>{while(st.length>n){const id=st.pop();h+=(GL[id]===lastI?`<div class="gn">×${GN[id]}</div>`:'')+'</div>'}};
  c.forEach(it=>{if(it.cu){h+='<div class="cu"></div>';return}const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k]===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push(gs[j]);h+=`<div class="gp d${Math.min(j+1,4)}">`}
-  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}"><div class="s">${it.tri?'<svg class="tri" width="8" height="8" viewBox="0 0 8 8"><path d="M4 1.2L7.2 6.8H0.8Z"/></svg>':dots(it.dl)}</div><div style="width:35px;height:29px"></div><div class="s">${dots(it.dr)}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.line?'<div class="ln"></div>':''}${it.dline?'<div class="ln2"></div>':''}<div class="s">${it.tri?'<svg class="tri" width="8" height="8" viewBox="0 0 8 8"><path d="M4 1.2L7.2 6.8H0.8Z"/></svg>':dots(it.dl)}</div>${gl(it.b,it.m,it.mk)}<div class="s">${dots(it.dr)}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
+  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.tri?TRI:''}<div class="s">${dots(it.dl)}</div><div style="width:35px;height:29px"></div><div class="s">${dots(it.dr)}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.tri?TRI:''}${it.line?'<div class="ln"></div>':''}${it.dline?'<div class="ln2"></div>':''}<div class="s">${dots(it.dl)}</div>${gl(it.b,it.m,it.mk)}<div class="s">${dots(it.dr)}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
  document.getElementById('out').innerHTML=cols.map(colHtml).join('');
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
  const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=exactG();document.getElementById('gv').textContent=g?'×'+GN[g]:'×';document.getElementById('pst').disabled=!(clip&&clip.length)}}}
-const dsv=(cx,cy,it)=>{let o='';if(it.tri || it.triangle)o+=`<polygon points="${cx-24.8},${cy-1.5} ${cx-18.2},${cy-1.5} ${cx-21.5},${cy-8}" fill="none" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>`;const l=it.dl,r=it.dr;for(let j=0;j<l;j++)o+=`<circle cx="${cx-21.5}" cy="${cy+(j-(l-1)/2)*8}" r="2.6" fill="#000"/>`;for(let j=0;j<r;j++)o+=`<circle cx="${cx+21.5}" cy="${cy+(j-(r-1)/2)*8}" r="2.6" fill="#000"/>`;return o};
+const dsv=(cx,cy,it)=>{let o='';if(it.tri)o+=`<polygon points="${cx-23},${cy+11} ${cx-16},${cy+11} ${cx-19.5},${cy+4}" fill="none" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>`;const l=it.dl,r=it.dr;for(let j=0;j<l;j++)o+=`<circle cx="${cx-21.5}" cy="${cy+(j-(l-1)/2)*8}" r="2.6" fill="#000"/>`;for(let j=0;j<r;j++)o+=`<circle cx="${cx+21.5}" cy="${cy+(j-(r-1)/2)*8}" r="2.6" fill="#000"/>`;return o};
 function exportSvg(){const cw=52,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};
  seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{GLx[id]=i})});for(const id in GLx){let f=seq.findIndex(e=>(e.g||[]).includes(+id));GNx[id]=(seq[f].gc&&seq[f].gc[id])||2}
  lay.forEach((col,ci)=>{const cx=W-pd-cw/2-ci*cw;let y=pd+tH,st=[],lastI=-1;
@@ -138,7 +118,7 @@ const dpVals=()=>[...new Set([...DPB,...DPX,dur])].sort((a,b)=>a-b);
 function refreshDP(){const p=document.getElementById('dpop');if(!p||p.hidden)return;const r=document.getElementById('dpr');r.innerHTML=dpVals().map(v=>`<button data-dv="${v}"${v===dur?' class="on"':''}>${fmtC(v)}</button>`).join('')+'<button id="dpm">+</button>'}
 function openDP(){document.getElementById('dpop').hidden=false;refreshDP()}
 function addDP(){const m=Math.max(...dpVals());if(m<48)DPX.push(Math.min(48,m+2));refreshDP();const r=document.getElementById('dpr');r.scrollLeft=r.scrollWidth}
-function setDur(v,keep){dur=Math.max(0,Math.min(48,v));if(!keep){const k=DU.findIndex(x=>x[1]===dur);if(k>=0)di=k}drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p||seq[k].rs)seq[k].d=dur;render()}refreshDP()}
+function setDur(v,keep){dur=Math.max(0,Math.min(48,v));if(!keep){const k=DU.findIndex(x=>x[1]===dur);if(k>=0)di=k}drl();if(sel){for(let k=sel.a;k<=sel.b;k++)if(seq[k].p||seq[k].rs){seq[k].d=dur;delete seq[k].ph}render()}refreshDP()}
 document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const l=seq[cur-1];
  if(lpF){lpF=false;return}
  if(b.dataset.p){ins(fmNext?{p:b.dataset.p,d:dur,fm:1}:{p:b.dataset.p,d:dur});fmNext=false;document.getElementById('dpop').hidden=true;render()}
@@ -152,6 +132,7 @@ document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if
  else if(b.id==='un'){if(cur>0){delRange(cur-1,cur-1);cur--;sel=null;render()}}
  else if(b.id==='sx2'){sel=null;render()}
  else if(b.id==='gm'){setCnt(-1)}
+ else if(b.id==='trg'){toggleTri()}
  else if(b.id==='cpy'){copySel();render()}
  else if(b.id==='cut'){cutSel()}
  else if(b.id==='pst'){pasteSel()}
@@ -163,8 +144,9 @@ document.getElementById('out').onclick=e=>{if(lpO){lpO=false;return}const r=e.ta
 document.getElementById('ep').onclick=()=>exp('png');
 
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
-const cp=(o,e)=>{if(e.g!=null){const g=Array.isArray(e.g)?e.g.slice():[e.g];if(g.length)o.g=g}if(e.gc!=null){const gc=typeof e.gc==='object'?{...e.gc}:((e.g!=null&&!Array.isArray(e.g))?{[e.g]:e.gc}:null);if(gc&&Object.keys(gc).length)o.gc=gc}return o};
-const clean=a=>Array.isArray(a)?a.filter(e=>e&&(e.br||e.hn||(e.rs&&e.d>0)||(N[e.p]&&e.d>=0))).map(e=>cp(e.br?{br:1}:e.hn?{hn:1}:e.rs?{rs:1,d:e.d}:{p:e.p,d:e.d,...(e.sw||e.rp?{sw:1}:{}),...(e.fm?{fm:1}:{})},e)):[];
+const cp=(o,e)=>{if(e.g!=null){const g=Array.isArray(e.g)?e.g.slice():[e.g];if(g.length)o.g=g}if(e.gc!=null){const gc=typeof e.gc==='object'?{...e.gc}:(e.g!=null&&!Array.isArray(e.g)?{[e.g]:e.gc}:null);if(gc&&Object.keys(gc).length)o.gc=gc}return o};
+const keep=(o,e)=>{if(typeof e.ph==='number')o.ph=e.ph;if(e.tr)o.tr=1;return o};
+const clean=a=>Array.isArray(a)?a.filter(e=>e&&(e.br||e.hn||(e.rs&&e.d>0)||(N[e.p]&&e.d>=0))).map(e=>cp(e.br?{br:1}:e.hn?{hn:1}:e.rs?keep({rs:1,d:e.d},e):keep({p:e.p,d:e.d,...(e.sw||e.rp?{sw:1}:{}),...(e.fm?{fm:1}:{})},e),e)):[];
 const $=id=>document.getElementById(id);let delArm=null;
 function setBak(){if(seq.length)LS.set('shk.bak',seq)}
 function sv(m){$('svm').textContent=m||''}
@@ -199,12 +181,13 @@ function setCnt(dn){if(!sel)return;const ex=exactG();
 function unG(){if(!sel)return;const t=exactG()||innerG();if(!t)return;seq.forEach(e=>{if(e.g){e.g=e.g.filter(x=>x!==t);if(!e.g.length)delete e.g}if(e.gc&&e.gc[t]!==undefined){delete e.gc[t];if(!Object.keys(e.gc).length)delete e.gc}});render()}
 function delRange(a,b){const nx=seq[b+1];if(nx)for(let k=a;k<=b;k++){const gc=seq[k].gc;if(gc)for(const id in gc)if((nx.g||[]).includes(+id)){nx.gc=Object.assign(nx.gc||{},{[id]:gc[id]})}}seq.splice(a,b-a+1)}
 let clip=LS.get('shk.clip');if(!Array.isArray(clip))clip=null;
+function toggleTri(){if(!sel)return;const ks=[];for(let k=sel.a;k<=sel.b;k++)if(seq[k].p||seq[k].rs)ks.push(k);if(!ks.length)return;const all=ks.every(k=>seq[k].tr);ks.forEach(k=>{if(all)delete seq[k].tr;else seq[k].tr=1});render()}
 function copySel(){if(!sel)return;const a=sel.a,b=sel.b,keep=new Set();const ids=new Set();for(let k=a;k<=b;k++)(seq[k].g||[]).forEach(x=>ids.add(x));ids.forEach(x=>{const[f,l]=gr(x);if(f>=a&&l<=b)keep.add(x)});
  clip=seq.slice(a,b+1).map(e=>{const o=JSON.parse(JSON.stringify(e));if(o.g){o.g=o.g.filter(x=>keep.has(x));if(!o.g.length)delete o.g}if(o.gc){for(const id in o.gc)if(!keep.has(+id))delete o.gc[id];if(!Object.keys(o.gc).length)delete o.gc}return o});LS.set('shk.clip',clip)}
 function cutSel(){if(!sel)return;copySel();const a=sel.a;delRange(a,sel.b);cur=a;sel=null;render()}
 function pasteSel(){if(!clip||!clip.length)return;const pos=sel?sel.b+1:cur;let nid=1+Math.max(0,...seq.flatMap(e=>e.g||[])),map={};
  const A=seq[pos-1],B=seq[pos],com=(A&&B)?(A.g||[]).filter(x=>(B.g||[]).includes(x)):[];
- const items=clip.map(e=>{const o=JSON.parse(JSON.stringify(e));(o.g||[]).forEach(x=>{if(!map[x])map[x]=nid++});if(o.g)o.g=o.g.map(x=>map[x]);if(o.gc){const n={};for(const id in o.gc)n[map[id]||id]=o.gc[id];o.gc=n}if(com.length)o.g=com.concat(o.g||[]);return o});
+ const items=clip.map(e=>{const o=JSON.parse(JSON.stringify(e));delete o.ph;(o.g||[]).forEach(x=>{if(!map[x])map[x]=nid++});if(o.g)o.g=o.g.map(x=>map[x]);if(o.gc){const n={};for(const id in o.gc)n[map[id]||id]=o.gc[id];o.gc=n}if(com.length)o.g=com.concat(o.g||[]);return o});
  seq.splice(pos,0,...items);cur=pos+items.length;sel=null;render()}
 let lpO=false,lpOT=null;const outE=document.getElementById('out');
 outE.addEventListener('pointerdown',e=>{lpO=false;clearTimeout(lpOT);const r=e.target.closest('[data-i]');if(!r)return;lpOT=setTimeout(()=>{lpOT=null;lpO=true;const i=+r.dataset.i;sel={anc:i,a:i,b:i};render();if(navigator.vibrate)navigator.vibrate(15)},450)});
