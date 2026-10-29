@@ -36,7 +36,7 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #sv{position:fixed;inset:0;z-index:5;background:var(--bg);overflow:auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px))}#sv[hidden]{display:none}#sv input[type=text]{flex:1;min-width:0;background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:7px;font:inherit}.li{display:flex;gap:4px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}.li span{flex:1;min-width:0;overflow-wrap:anywhere}.li button{flex:0 0 auto;padding:5px 9px}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}.tri{display:block;position:absolute;left:5px;top:2px;pointer-events:none}.tri path{fill:none;stroke:var(--fg);stroke-width:1.2;stroke-linejoin:round}.ln2{position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:3px;border-left:1px solid var(--fg);border-right:1px solid var(--fg);box-sizing:border-box}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+.gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}.tri{display:block;position:absolute;left:5px;top:2px;pointer-events:none}.tri path{fill:none;stroke:var(--fg);stroke-width:1.2;stroke-linejoin:round}.beat-lines{position:absolute;left:calc(50% + 3px);top:0;bottom:0;pointer-events:none}.beat-lines i{position:absolute;top:0;bottom:0;border-left:.75px solid var(--fg);transform:translateX(-50%)}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
 button.active-brush{background:#e0533d!important;color:#fff!important;border-color:#e0533d!important}
 </style></head>
 <body>
@@ -128,21 +128,35 @@ seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]
  const mk0=()=>cols[cols.length-1].push({cu:1});if(cur===0)mk0();
 
  const lineType = new Array(seq.length).fill(0);
+ // Omote (dr) starts a beat; ura (dl) closes it. Intermediate undotted
+ // notes determine the number of parallel center lines. Extend through the
+ // next dr marker, as required by the notation convention.
  for(let i=0; i<seq.length; i++){
-   if(seq[i].dr > 0) {
-     let j = i + 1;
-     let countBetween = 0;
-     while(j < seq.length && !seq[j].br && !seq[j].hn && (!seq[j].dl || seq[j].dl === 0)) {
-       if(seq[j].dr > 0) break;
-       countBetween++;
-       j++;
-     }
-     if(j < seq.length && seq[j].dl > 0) {
-       const mode = (countBetween === 0) ? 1 : 2;
-       for(let k = i; k <= j; k++) {
-         lineType[k] = mode;
-       }
-     }
+   if(!(seq[i].dr > 0) || seq[i].br || seq[i].hn || seq[i].rest) continue;
+   let j=i+1, countBetween=0, foundUra=false;
+   while(j<seq.length){
+     const e=seq[j];
+     if(e.br || e.hn || e.rest) break;
+     if(e.dl>0){ foundUra=true; break; }
+     if(e.dr>0) break;
+     // Count only truly dotless notes between omote and ura.
+     if(!(e.dl>0) && !(e.dr>0)) countBetween++;
+     j++;
+   }
+   if(!foundUra) continue;
+   const count=countBetween+1;
+   let end=j+1;
+   while(end<seq.length){
+     const e=seq[end];
+     if(e.br || e.hn || e.rest) break;
+     if(e.dr>0) break;
+     end++;
+   }
+   // Include the next dr itself when one is present before a separator.
+   if(end<seq.length && !seq[end].br && !seq[end].hn && !seq[end].rest && seq[end].dr>0) {
+     for(let k=i;k<=end;k++) lineType[k]=Math.max(lineType[k],count);
+   } else {
+     for(let k=i;k<=j;k++) lineType[k]=Math.max(lineType[k],count);
    }
  }
 
@@ -155,15 +169,14 @@ seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]
   if(!rep){const imp=(pb==='リ'&&(b==='ロ'||b==='ツ'))?'甲':((pb==='ロ'||pb==='ツ')&&st==='甲'&&b==='リ')?'乙':st;
    if((SHR.has(b+'|'+m)&&imp!==rg2)||e.fm)mk=rg2;st=rg2;pb=b}
    
-  const line = (lineType[i] === 1);
-  const dline = (lineType[i] === 2);
+  const lineCount = lineType[i];
 
-  c.push({b:rep?'＞':b,m:rep?'':m,mk,dl,dr,line,dline,tri:!!e.tr,i,gs:e.g||[]});t+=2;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
+  c.push({b:rep?'＞':b,m:rep?'':m,mk,dl,dr,lineCount,tri:!!e.tr,i,gs:e.g||[]});t+=2;prev=e;sepB=false;if(i<cur)stc=st;if(cur===i+1)mk0()});
  lay=cols.map(c=>c.filter(x=>!x.cu));
  const dots=n=>'<div class="dt"></div>'.repeat(n);
  const colHtml=c=>{let h='',st=[],lastI=-1;const closeTo=n=>{while(st.length>n){const id=st.pop();const cnt=GN[id];if(GL[id]===lastI && cnt > 1){h+=`<div class="gn">×${cnt}</div>`}h+='</div>'}};
  c.forEach(it=>{if(it.cu){h+='<div class="cu"></div>';return}const gs=it.gs||[];let k=0;while(k<st.length&&k<gs.length&&st[k]===gs[k])k++;closeTo(k);for(let j=k;j<gs.length;j++){st.push(gs[j]);const cnt=GN[gs[j]];h+=cnt>1?`<div class="gp d${Math.min(j+1,4)}">`:`<div>`}
-  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.tri?TRI:''}<div class="s">${dots(it.dl)}</div><div style="width:35px;height:29px"></div><div class="s">${dots(it.dr)}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.tri?TRI:''}${it.line?'<div class="ln"></div>':''}${it.dline?'<div class="ln2"></div>':''}<div class="s">${dots(it.dl)}</div>${gl(it.b,it.m,it.mk)}<div class="s">${dots(it.dr)}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
+  h+=it.hn?`<div class="bh" data-i="${it.i}"></div>`:it.rest?`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.tri?TRI:''}<div class="s">${dots(it.dl)}</div><div style="width:35px;height:29px"></div><div class="s">${dots(it.dr)}</div></div>`:`<div class="r${sel&&it.i>=sel.a&&it.i<=sel.b?' sel':''}" data-i="${it.i}">${it.tri?TRI:''}${it.lineCount?`<div class="beat-lines">${Array.from({length:it.lineCount},(_,n)=>`<i style="left:${(n-(it.lineCount-1)/2)*5}px"></i>`).join('')}</div>`:''}<div class="s">${dots(it.dl)}</div>${gl(it.b,it.m,it.mk)}<div class="s">${dots(it.dr)}</div></div>`;lastI=it.i});closeTo(0);return `<div class="col">${h}</div>`};
  document.getElementById('out').innerHTML=cols.map(colHtml).join('');
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
@@ -179,8 +192,12 @@ function exportSvg(){const cw=52,pd=18,tH=cname?30:0;const W=Math.max(lay.length
   if(it.rest){out+=dsv(cx,y+16,it);y+=33;lastI=it.i;return}
   if(it.hn){out+=`<line x1="${cx-10.5}" x2="${cx+1.5}" y1="${y+6}" y2="${y+6}" class="ex"/>`;y+=12;lastI=it.i;return}
   const h=it.b==='＞'?12:GH(it.m,it.mk),rh=h+4;
-  if(it.line)out+=`<line x1="${cx}" x2="${cx}" y1="${y}" y2="${y+rh}" class="ex" style="stroke-width:1"/>`;
-  if(it.dline)out+=`<line x1="${cx-1.5}" x2="${cx-1.5}" y1="${y}" y2="${y+rh}" class="ex" style="stroke-width:1"/><line x1="${cx+1.5}" x2="${cx+1.5}" y1="${y}" y2="${y+rh}" class="ex" style="stroke-width:1"/>`;
+  if(it.lineCount){
+   for(let n=0;n<it.lineCount;n++){
+    const lx=cx+3+(n-(it.lineCount-1)/2)*5;
+    out+=`<line x1="${lx}" x2="${lx}" y1="${y}" y2="${y+rh}" class="ex" style="stroke-width:.75"/>`;
+   }
+  }
   out+=gl(it.b,it.m,it.mk).replace('<svg ',`<svg x="${cx-17.5}" y="${y+2}" `);
   out+=dsv(cx,y+rh/2,it);
   y+=rh;lastI=it.i});closeTo(0);H=Math.max(H,y)});
