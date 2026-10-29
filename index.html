@@ -19,7 +19,7 @@ html,body{height:100%;margin:0;padding:0;overflow:hidden;background:var(--bg);co
 #app{display:flex;flex-direction:column;height:100%;width:100%;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 .row{display:flex;gap:4px;align-items:center;padding:2px 6px;flex:0 0 auto}.row button{flex:1}
 .g{display:grid;gap:3px;margin:3px 0}.w7{grid-template-columns:repeat(7,1fr)}.b14{grid-template-columns:repeat(14,1fr)}
-button{background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:4px 2px;font:inherit}
+button{background:var(--bt);color:var(--fg);border:1px solid var(--ln);border-radius:7px;padding:4px 2px;font:inherit;display:inline-flex;align-items:center;justify-content:center}
 button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 #out{display:flex;flex-direction:row-reverse;gap:1px;flex:1;overflow-x:auto;overflow-y:auto;border-top:1px solid var(--ln);padding:4px 0;align-content:flex-start}
 .col{display:flex;flex-direction:column;align-items:center;min-width:46px}
@@ -37,13 +37,27 @@ button:disabled{opacity:.35}button small{display:block;font-size:9px;opacity:.7}
 .cu{height:7px;width:46px;position:relative}.cu::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2.5px solid #e0533d;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:.15}}
 #tot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .gp{align-self:stretch;border-radius:8px;padding:1px 0;margin:1px 0}.gp .gp{margin-left:1px;margin-right:1px}.gp .r{justify-content:center}.gp.d1{background:rgba(128,128,128,.20)}.gp.d2{background:rgba(128,128,128,.34)}.gp.d3{background:rgba(128,128,128,.48)}.gp.d4{background:rgba(128,128,128,.60)}#selp button{flex:1;padding:0;font-size:16px}.gn{text-align:center;font-size:12px;padding:1px 0 2px}.r.sel::before{content:"";position:absolute;left:8px;right:0;top:0;bottom:0;border:2px solid #e0533d;border-radius:4px;pointer-events:none}.tri{display:block;position:absolute;left:5px;top:2px;pointer-events:none}.tri path{fill:none;stroke:var(--fg);stroke-width:1.2;stroke-linejoin:round}.ln2{position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:3px;border-left:1px solid var(--fg);border-right:1px solid var(--fg);box-sizing:border-box}#selp[hidden]{display:none}#selp{margin-bottom:4px;gap:3px}#selp .m{white-space:nowrap}
+button.active-brush{background:#e0533d!important;color:#fff!important;border-color:#e0533d!important}
 </style></head>
 <body>
 <div id="app">
   <div class="row"><span class="m" id="tot" style="flex:1"></span><button id="undo" style="flex:0 0 auto;padding:3px 9px;font-size:16px" title="Undo">⟲</button><button id="ep" style="flex:0 0 auto;padding:3px 9px">⤓ PNG</button><button id="sb" style="flex:0 0 auto;padding:3px 9px">💾</button><button id="cl" style="flex:0 0 auto;padding:3px 9px">✕</button></div>
   <div id="out"></div>
   <div id="pad">
-    <div id="selp" class="row" hidden><button id="mark_none" title="ცარიელი">▢</button><button id="mark_right" title="ომოტე (მარჯვნივ)">|•</button><button id="mark_left" title="ურა (მარცხნივ)">•|</button><button id="mark_tri" title="3/4 სამკუთხედი">△</button><button id="gm">−</button><b id="gv" style="flex:1;text-align:center;font-size:16px">×</b><button id="gpl">+</button><button id="cpy">⧉</button><button id="cut">✂</button><button id="pst">⎘</button><button id="sx2">✓</button></div>
+    <div id="selp" class="row" hidden>
+      <button id="mark_none" title="ცარიელი">▢</button>
+      <button id="mark_left" title="ურა (მარცხნივ)">•|</button>
+      <button id="mark_right" title="ომოტე (მარჯვნივ)">|•</button>
+      <button id="mark_tri" title="3/4 სამკუთხედი">△</button>
+      <button id="gm">−</button>
+      <b id="gv" style="flex:1;text-align:center;font-size:16px">×</b>
+      <button id="gpl">+</button>
+      <button id="cpy" title="Copy"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      <button id="cut" title="Cut">✂</button>
+      <button id="brush" title="Format Painter">🖌️</button>
+      <button id="pst">⎘</button>
+      <button id="sx2">✓</button>
+    </div>
     <div id="pk"></div>
     <div class="row"><button id="md" style="flex:1"></button><button id="rg" style="flex:1;font-size:18px"></button><button id="sp" style="flex:4;font-size:26px;line-height:1">␣</button><button id="en" style="flex:1;font-size:36px;line-height:1">↵</button><button id="un" style="flex:1;font-size:22px;line-height:1">⌫</button></div>
   </div>
@@ -217,6 +231,47 @@ function applyMark(type){
 
 document.getElementById('undo').onclick = doUndo;
 
+// ფუნჯის (Format Painter) ლოგიკა
+let activeStyleBuffer = null;
+
+function clearBrush() {
+  activeStyleBuffer = null;
+  const brushBtn = document.getElementById('brush');
+  if (brushBtn) brushBtn.classList.remove('active-brush');
+}
+
+function toggleBrush() {
+  const brushBtn = document.getElementById('brush');
+  if (activeStyleBuffer) {
+    clearBrush();
+  } else if (sel) {
+    activeStyleBuffer = seq.slice(sel.a, sel.b + 1).map(e => ({
+      dl: e.dl || 0,
+      dr: e.dr || 0,
+      tr: e.tr || 0
+    }));
+    brushBtn.classList.add('active-brush');
+  }
+  render();
+}
+
+function applyStyleBuffer(targetA, targetB) {
+  if (!activeStyleBuffer || activeStyleBuffer.length === 0) return;
+  saveHistory();
+  const len = targetB - targetA + 1;
+  for (let i = 0; i < len; i++) {
+    const k = targetA + i;
+    if (!seq[k]) break;
+    const style = activeStyleBuffer[i % activeStyleBuffer.length];
+    seq[k].dl = style.dl;
+    seq[k].dr = style.dr;
+    seq[k].tr = style.tr;
+  }
+  render();
+}
+
+document.getElementById('brush').onclick = toggleBrush;
+
 document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const l=seq[cur-1];
  if(lpF){lpF=false;return}
  if(b.dataset.p){ins(fmNext?{p:b.dataset.p,fm:1}:{p:b.dataset.p});fmNext=false;render()}
@@ -226,18 +281,80 @@ document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if
  else if(b.id==='mark_left'){applyMark('left')}
  else if(b.id==='mark_right'){applyMark('right')}
  else if(b.id==='mark_tri'){applyMark('tri')}
- else if(b.id==='sx2'){sel=null;render()}
+ else if(b.id==='sx2'){
+   clearBrush();
+   sel=null;
+   render();
+ }
  else if(b.id==='sp'){if(l&&l.hn){ins({rs:1});render()}else if(l&&!l.br){ins({hn:1});render()}}
  else if(b.id==='en'){if(l&&!l.br){ins({br:1});render()}}
+ else if(b.id==='undo'){doUndo()}
  else if(b.id==='un'){if(cur>0){saveHistory();delRange(cur-1,cur-1);cur--;sel=null;render()}}
  else if(b.id==='gm'){setCnt(-1)}
  else if(b.id==='cpy'){copySel();render()}
  else if(b.id==='cut'){cutSel()}
  else if(b.id==='pst'){pasteSel()}
  else if(b.id==='gpl'){setCnt(1)}
- else if(b.id==='gx'){unG()}};
-document.getElementById('cl').onclick=()=>{saveHistory();seq=[];cur=0;cname='';render()};
-document.getElementById('out').onclick=e=>{if(lpO){lpO=false;return}const r=e.target.closest('[data-i]');if(sel){if(r){const i=+r.dataset.i;sel.a=Math.min(sel.anc,i);sel.b=Math.max(sel.anc,i)}else sel=null;render();return}if(r){const i=+r.dataset.i,bb=r.getBoundingClientRect();cur=(e.clientY-bb.top<bb.height/2)?i:i+1}else cur=seq.length;render()};
+ else if(b.id==='gx कुलकर्णी'){unG()}};
+document.getElementById('cl').onclick=()=>{saveHistory();clearBrush();seq=[];cur=0;cname='';render()};
+
+let lpO=false, lpOT=null;
+const outE=document.getElementById('out');
+
+outE.addEventListener('pointerdown', e => {
+  lpO = false;
+  clearTimeout(lpOT);
+  const r = e.target.closest('[data-i]');
+  if(!r) return;
+  const i = +r.dataset.i;
+  
+  lpOT = setTimeout(() => {
+    lpOT = null;
+    lpO = true;
+    if (sel && sel.anc !== undefined) {
+      sel.a = Math.min(sel.anc, i);
+      sel.b = Math.max(sel.anc, i);
+    } else {
+      sel = { anc: i, a: i, b: i };
+    }
+    if (activeStyleBuffer) {
+      applyStyleBuffer(sel.a, sel.b);
+    } else {
+      render();
+    }
+    if(navigator.vibrate) navigator.vibrate(15);
+  }, 450);
+});
+
+['pointerup','pointercancel','pointerleave'].forEach(t => outE.addEventListener(t, () => clearTimeout(lpOT)));
+outE.addEventListener('contextmenu', e => e.preventDefault());
+
+outE.addEventListener('click', e => {
+  if(lpO) { lpO = false; return; }
+  const r = e.target.closest('[data-i]');
+  if(!r) { 
+    if(!activeStyleBuffer) sel = null; 
+    render(); 
+    return; 
+  }
+  const i = +r.dataset.i;
+  
+  if (sel && sel.anc !== undefined) {
+    sel = { anc: i, a: i, b: i };
+    if (activeStyleBuffer) {
+      applyStyleBuffer(sel.a, sel.b);
+    }
+  } else {
+    const bb = r.getBoundingClientRect();
+    cur = (e.clientY - bb.top < bb.height / 2) ? i : i + 1;
+    if (activeStyleBuffer) {
+      applyStyleBuffer(i, i);
+    } else {
+      sel = null;
+    }
+  }
+  render();
+});
 
 document.getElementById('ep').onclick=()=>exp('png');
 
@@ -259,7 +376,7 @@ async function saveFile(fn,data){const dl=(typeof claude!=='undefined'&&claude.u
 $('sb').onclick=()=>{list();sv('');$('sv').hidden=false};$('sx').onclick=()=>{$('sv').hidden=true;delArm=null};
 $('ss').onclick=()=>{if(!seq.length){sv('ჯერ ჩაწერე ნოტები');return}const l=LS.get('shk.lib')||{};let n=$('sn').value.trim()||('კომპოზიცია '+(Object.keys(l).length+1));l[n]={t:Date.now(),seq:clean(seq)};cname=n;render();
  sv(LS.set('shk.lib',l)?'შენახულია: '+n:'შენახვა ვერ მოხერხდა (ბრაუზერის მეხსიერება დაბლოკილია)');$('sn').value=n;list()};
-$('snw').onclick=()=>{saveHistory();setBak();seq=[];cur=0;cname='';$('sn').value='';render();sv('ახალი ჩანაწერი. წინა ინახება: „დაბრუნება“')};
+$('snw').onclick=()=>{saveHistory();clearBrush();setBak();seq=[];cur=0;cname='';$('sn').value='';render();sv('ახალი ჩანაწერი. წინა ინახება: „დაბრუნება“')};
 $('sbk').onclick=()=>{const b=LS.get('shk.bak');if(!b||!b.length){sv('დასაბრუნებელი არაფერია');return}saveHistory();const cs=seq;seq=clean(b);cur=seq.length;LS.set('shk.bak',cs);render();$('sv').hidden=true};
 $('sje').onclick=async()=>{if(!seq.length){sv('ჯერ ჩაწერე ნოტები');return}try{
   const baseName = (cname || $('sn').value || 'shakuhachi-composition').replace(/[^a-zA-Z0-9ა-ჰ_-]/g, '_');
@@ -267,7 +384,7 @@ $('sje').onclick=async()=>{if(!seq.length){sv('ჯერ ჩაწერე ნ�
   sv('ფაილი შენახულია');
 }catch(e){sv(e&&e.code==='declined'?'':'JSON ვერ შეინახა: '+((e&&(e.code||e.message))||e))}};
 $('sji').onclick=()=>$('sf').click();
-$('sf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result),q=clean(o.seq);if(!q.length)throw 0;saveHistory();setBak();seq=q;cur=seq.length;cname=o.name||'';if(o.name)$('sn').value=o.name;render();$('sv').hidden=true}catch(x){sv('ფაილი ვერ წავიკითხე')}};r.readAsText(f);e.target.value=''};
+$('sf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result),q=clean(o.seq);if(!q.length)throw 0;saveHistory();clearBrush();setBak();seq=q;cur=seq.length;cname=o.name||'';if(o.name)$('sn').value=o.name;render();$('sv').hidden=true}catch(x){sv('ფაილი ვერ წავიკითხე')}};r.readAsText(f);e.target.value=''};
 {const c=LS.get('shk.cur');if(Array.isArray(c)){seq=clean(c);cur=seq.length;cname=LS.get('shk.name')||''}}
 const gr=id=>{let f=-1,l=-1;seq.forEach((e,i)=>{if(e.g&&e.g.includes(id)){if(f<0)f=i;l=i}});return[f,l]};
 const exactG=()=>{if(!sel)return 0;for(const id of (seq[sel.a].g||[])){const[f,l]=gr(id);if(f===sel.a&&l===sel.b)return id}return 0};
@@ -314,10 +431,7 @@ function pasteSel(){if(!clip||!clip.length)return;saveHistory();const pos=sel?se
  const A=seq[pos-1],B=seq[pos],com=(A&&B)?(A.g||[]).filter(x=>(B.g||[]).includes(x)):[];
  const items=clip.map(e=>{const o=JSON.parse(JSON.stringify(e));delete o.ph;(o.g||[]).forEach(x=>{if(!map[x])map[x]=nid++});if(o.g)o.g=o.g.map(x=>map[x]);if(o.gc){const n={};for(const id in o.gc)n[map[id]||id]=o.gc[id];o.gc=n}if(com.length)o.g=com.concat(o.g||[]).filter((v,i,a)=>a.indexOf(v)===i);return o});
  seq.splice(pos,0,...items);cur=pos+items.length;sel=null;render()}
-let lpO=false,lpOT=null;const outE=document.getElementById('out');
-outE.addEventListener('pointerdown',e=>{lpO=false;clearTimeout(lpOT);const r=e.target.closest('[data-i]');if(!r)return;lpOT=setTimeout(()=>{lpOT=null;lpO=true;const i=+r.dataset.i;sel={anc:i,a:i,b:i};render();if(navigator.vibrate)navigator.vibrate(15)},450)});
-['pointerup','pointercancel','pointerleave'].forEach(t=>outE.addEventListener(t,()=>clearTimeout(lpOT)));
-outE.addEventListener('contextmenu',e=>e.preventDefault());
+
 let lpT=null,lpF=false;const pd_=document.getElementById('pad');
 pd_.addEventListener('pointerdown',e=>{lpF=false;clearTimeout(lpT);const b=e.target.closest('button[data-p]');if(!b||b.disabled)return;lpT=setTimeout(()=>{lpT=null;lpF=true;const p=b.dataset.p;let k=cur-1;while(k>=0&&(seq[k].br||seq[k].hn))k--;const it=(k>=0&&seq[k].p===p)?{p,sw:1}:{p};if(fmNext){it.fm=1;fmNext=false}ins(it);render();if(navigator.vibrate)navigator.vibrate(15)},450)});
 ['pointerup','pointercancel','pointerleave'].forEach(t=>pd_.addEventListener(t,()=>clearTimeout(lpT)));
