@@ -96,7 +96,7 @@ document.getElementById('pad').onclick=e=>{const b=e.target.closest('button');if
  else if(b.id==='cut'){cutSel()}
  else if(b.id==='pst'){pasteSel()}
  else if(b.id==='gpl'){setCnt(1)}
- else if(b.id==='gx कुलकर्णी'){unG()}};
+ else if(b.id==='gx'){unG()}};
 document.getElementById('cl').onclick=()=>{saveHistory();clearBrush();seq=[];cur=0;cname='';render()};
 let lpO=false, lpOT=null;
 const outE=document.getElementById('out');
