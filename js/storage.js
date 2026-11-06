@@ -26,3 +26,14 @@ $('sje').onclick=async()=>{if(!seq.length){sv('ჯერ ჩაწერე ნ�
 $('sji').onclick=()=>$('sf').click();
 $('sf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result),q=clean(o.seq);if(!q.length)throw 0;saveHistory();clearBrush();setBak();seq=q;cur=seq.length;cname=o.name||'';if(o.name)$('sn').value=o.name;render();$('sv').hidden=true}catch(x){sv('ფაილი ვერ წავიკითხე')}};r.readAsText(f);e.target.value=''};
 {const c=LS.get('shk.cur');if(Array.isArray(c)){seq=clean(c);cur=seq.length;cname=LS.get('shk.name')||''}}
+// swipe between library compositions (top bar only)
+const TOPBAR_SEL='#topbar'; // <-- set to the real top bar selector
+function swipeLib(d){const l=LS.get('shk.lib')||{},ks=Object.keys(l);if(!ks.length)return;
+ const i=ks.indexOf(cname),j=i<0?(d>0?0:ks.length-1):i+d;
+ if(j<0||j>=ks.length)return;
+ if(seq.length){const n=cname||('კომპოზიცია '+(ks.length+1));l[n]={t:Date.now(),seq:clean(seq)};if(!LS.set('shk.lib',l))return}
+ const k=ks[j];saveHistory();setBak();seq=clean(l[k].seq);cur=seq.length;cname=k;$('sn').value=k;render()}
+{const el=document.querySelector(TOPBAR_SEL);if(el){let x0=0,y0=0,t0=0;
+ el.addEventListener('touchstart',e=>{const t=e.touches[0];x0=t.clientX;y0=t.clientY;t0=Date.now()},{passive:true});
+ el.addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;
+  if(Date.now()-t0<700&&Math.abs(dx)>60&&Math.abs(dx)>2*Math.abs(dy))swipeLib(dx<0?1:-1)},{passive:true})}}
