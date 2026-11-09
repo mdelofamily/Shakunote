@@ -62,7 +62,7 @@ seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]
   const cand=prev&&prev.p===e.p,rep=cand&&(sepB?!!e.sw:!e.sw);
   const [b,m]=G[N[e.p]]||['?',''];const rg2=pv(e.p)>61?'甲':'乙';let mk='';
   if(!rep){const imp=(pb==='リ'&&(b==='ロ'||b==='ツ'))?'甲':((pb==='ロ'||pb==='ツ')&&st==='甲'&&b==='リ')?'乙':st;
-   if((SHR.has(b+'|'+m)&&imp!==rg2)||e.fm)mk=rg2;st=rg2;pb=b}
+   if((SHR.has(b+'|'+m)&&imp!==rg2)||e.fm||st===null)mk=rg2;st=rg2;pb=b}
    
   const lineCount = lineType[i];
 
@@ -76,7 +76,7 @@ seq.forEach((e,i)=>{(e.g||[]).forEach(id=>{if(GF[id]===undefined)GF[id]=i;GL[id]
  const cu=document.querySelector('#out .cu');if(cu)cu.scrollIntoView({block:'nearest',inline:'nearest'});
  document.getElementById('tot').textContent=(cname?cname+(seq.length?' · ':''):'')+(seq.length?`სულ ${t/2} თვლა`:'');LS.set('shk.cur',seq);LS.set('shk.name',cname);const rb=document.getElementById('rg');if(rb){rb.textContent=stc||'乙';rb.classList.toggle('on',fmNext)}
  const sp=document.getElementById('selp');if(sp){sp.hidden=!sel;if(sel){const g=exactG();document.getElementById('gv').textContent=g&&GN[g]>1?'×'+GN[g]:'×';document.getElementById('pst').disabled=!(clip&&clip.length)}}
- updateUndoBtn();
+ updateUndoBtn();hiKey();
 }
 const dsv=(cx,cy,it)=>{let o='';if(it.tri)o+=`<polygon points="${cx+16},${cy-11} ${cx+23},${cy-11} ${cx+19.5},${cy-18}" fill="none" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/>`;const l=it.dl,r=it.dr;for(let j=0;j<l;j++)o+=`<circle cx="${cx-21.5}" cy="${cy+(j-(l-1)/2)*8}" r="2.6" fill="#000"/>`;for(let j=0;j<r;j++)o+=`<circle cx="${cx+21.5}" cy="${cy+(j-(r-1)/2)*8}" r="2.6" fill="#000"/>`;return o};
 function exportSvg(){const cw=52,pd=18,tH=cname?30:0;const W=Math.max(lay.length*cw+pd*2,cname?cname.length*9+pd*2:0);let H=0,out='',R=[];const GLx={},GNx={};

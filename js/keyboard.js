@@ -4,7 +4,12 @@ function kb(){const f=(i,o,st,cl)=>{const n=NM[i],p=NK[i]+o,ok=!!N[p];let c;
  if(mode==='s')c=staff(p);else if(mode==='l')c=n+o+(SH[i]?`<small>${SH[i]}${o}</small>`:'');else{const g=G[N[p]]||['?',''];c=gl(g[0],g[1],'')}
  return `<button class="kb ${cl||''}" ${ok?'':'disabled'} data-p="${p}" ${st||''}>${c}</button>`};
  let h='';for(let o=4;o<=7;o++)h+=`<div class="oc"><div class="g b14">${BL.map((i,j)=>f(i,o,`style="grid-column:${BC[j]}/span 2"`,'bl')).join('')}</div><div class="g w7">${WH.map(i=>f(i,o)).join('')}</div></div>`;
- document.getElementById('pk').innerHTML=h;document.getElementById('md').textContent={s:'𝄞',l:'ABC',j:'字'}[mode]}
+ document.getElementById('pk').innerHTML=h;hiKey();document.getElementById('md').textContent={s:'𝄞',l:'ABC',j:'字'}[mode]}
+// highlight the keyboard key of the note right before the cursor
+function hiKey(){
+  const e=seq[cur-1],p=(e&&e.p)||null;
+  document.querySelectorAll('#pk .kb').forEach(b=>b.classList.toggle('cur',!!p&&b.dataset.p===p));
+}
 function applyMark(type){
   saveHistory();
   const applyTo = (k) => {
